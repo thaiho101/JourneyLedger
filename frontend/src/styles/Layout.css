@@ -168,6 +168,10 @@
     /* font-size: 70px; */
 }
 
+.mobile-back-btn, .mobile-logout-btn {
+
+    display: none;
+}
 
 
 
