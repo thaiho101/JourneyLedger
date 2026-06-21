@@ -21,20 +21,26 @@ function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
 
     async function handleLogin(event) {
-        event.preventDefault();
+        try {
+            event.preventDefault();
 
-        const data = await login(email, password);
+            const data = await login(email, password);
 
 
-        console.log(data);
+            console.log(data);
 
-        if (data.token) {
-            localStorage.setItem('authToken', data.token);
-            localStorage.setItem('firstName', data.firstName);
-            localStorage.setItem('lastName', data.lastName);
-            console.log("Token saved");
-            navigate("/journeys");
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('firstName', data.firstName);
+                localStorage.setItem('lastName', data.lastName);
+                console.log("Token saved");
+                navigate("/journeys");
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Your email or password is not correct! Please try again.")
         }
+
     }
 
     return (

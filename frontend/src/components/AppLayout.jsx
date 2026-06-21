@@ -4,6 +4,9 @@ import { getJourneys } from "../services/journeyService";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineTravelExplore, MdOutlineSettings } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
+import { FaArrowLeft } from "react-icons/fa6";
+import { MdLogout } from "react-icons/md";
+
 
 
 function AppLayout({title, children}) {
@@ -13,6 +16,7 @@ function AppLayout({title, children}) {
     const isJourneyActive = location.pathname.startsWith("/journeys");
     const isPersonalAccountActive = location.pathname.startsWith("/account");
     const isSettingsPageActive = location.pathname.startsWith("/settings");
+    const isTransactionPageActive = location.pathname.includes("/transactions");
 
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
@@ -32,7 +36,10 @@ function AppLayout({title, children}) {
   return (
     <div className="app-layout">
         <aside className="sidebar">
-            <h2 className="sidebar-logo">JourneyLedger</h2>
+            <div className="sidebar-logo">
+                <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                <p>JourneyLedger</p>    
+            </div>
            <div className="sidebar-user-wrapper">
                 <FaRegUserCircle className="sidebar-user-icon" />
                 <p className="sidebar-user">{firstName} {lastName}</p>
@@ -52,7 +59,7 @@ function AppLayout({title, children}) {
                     {title}
                 </div>
                 
-                <button className="btn-logout" onClick={handleLogout}>Log out</button>
+                <button className="btn-logout mobile-logout-hidden" onClick={handleLogout}>Log out</button>
             </header>
             
             <div className="content-area"> {children} </div>
@@ -78,6 +85,16 @@ function AppLayout({title, children}) {
                 Settings
             </button>
         </div>
+
+        {isTransactionPageActive && (
+            <button onClick={() => navigate(-1)} className="mobile-back-btn">
+                <FaArrowLeft />
+            </button>
+        )}
+
+        <button className="btn-logout mobile-logout-btn" onClick={handleLogout}>
+            <MdLogout style={{}} size={25}/>
+        </button>
 
     </div>
   );

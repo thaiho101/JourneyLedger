@@ -51,6 +51,14 @@
     letter-spacing: 0.5px;
 }
 
+.sidebar-logo p {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;          
+    text-transform: uppercase; 
+    letter-spacing: 2px;      
+    font-size: 14px;
+}
+
 .sidebar-user-wrapper {
     display: flex;
     align-items: center;
@@ -201,6 +209,15 @@
     margin-bottom: 12px;
   }
 
+  .logo-img {
+    width: 120px;
+  }
+
+  .sidebar-logo p {
+    color: rgba(0, 0, 0, 0.571);
+    font-size: 12px;
+  }
+
   .sidebar-user-wrapper {
     margin-bottom: 14px;
     padding: 8px 12px;
@@ -297,5 +314,36 @@ box-shadow: 8px 0px 8px 0px rgba(0, 0, 0, 0.259), inset 0px -10px 19px 0px rgba(
     background-color: rgba(255, 255, 255, 0.25);
     font-weight: 700;
     color: #1a73e8;
+}
+
+.mobile-back-btn {
+    top: 15px;
+    left: 15px;
+}
+
+.mobile-logout-hidden {
+    display: none;
+}
+
+.mobile-logout-btn {
+    top: 15px;
+    right: 15px;
+
+}
+
+.mobile-back-btn, .mobile-logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border-radius: 999px;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.23);
+    backdrop-filter: blur(10px);
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.344);
+
+    box-shadow: inset 0px 0px 5px white;
 }
 }

@@ -18,3 +18,9 @@ transform: scale(1);
     grid-template-columns: 1fr 1fr;
     gap: 2px 24px;
 }
+
+@media (max-width: 768px) {
+    .auth-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
