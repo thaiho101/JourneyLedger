@@ -317,20 +317,33 @@ box-shadow: 8px 0px 8px 0px rgba(0, 0, 0, 0.259), inset 0px -10px 19px 0px rgba(
 }
 
 .mobile-back-btn {
+    top: 15px;
+    left: 15px;
+}
+
+.mobile-logout-hidden {
+    display: none;
+}
+
+.mobile-logout-btn {
+    top: 15px;
+    right: 15px;
+
+}
+
+.mobile-back-btn, .mobile-logout-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 15px;
-    left: 15px;
     border-radius: 999px;
     height: 50px;
     width: 50px;
-    background-color: rgba(255, 255, 255, 0.488);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.23);
+    backdrop-filter: blur(10px);
     font-size: 18px;
     color: rgba(0, 0, 0, 0.344);
 
-    box-shadow: inset 0px 0px 15px white;
+    box-shadow: inset 0px 0px 5px white;
 }
 }

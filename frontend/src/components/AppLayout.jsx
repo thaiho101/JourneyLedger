@@ -5,6 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineTravelExplore, MdOutlineSettings } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
+import { MdLogout } from "react-icons/md";
 
 
 
@@ -58,7 +59,7 @@ function AppLayout({title, children}) {
                     {title}
                 </div>
                 
-                <button className="btn-logout" onClick={handleLogout}>Log out</button>
+                <button className="btn-logout mobile-logout-hidden" onClick={handleLogout}>Log out</button>
             </header>
             
             <div className="content-area"> {children} </div>
@@ -90,6 +91,10 @@ function AppLayout({title, children}) {
                 <FaArrowLeft />
             </button>
         )}
+
+        <button className="btn-logout mobile-logout-btn" onClick={handleLogout}>
+            <MdLogout style={{}} size={25}/>
+        </button>
 
     </div>
   );
