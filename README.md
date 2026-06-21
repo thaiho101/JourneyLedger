@@ -119,7 +119,7 @@ JourneyLedger is deployed on a Raspberry Pi using:
 
 ## Author
 
-Thai Ho
+Nam Ho
 
 Software Engineering Graduate  
 University of Texas at Arlington
