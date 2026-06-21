@@ -42,7 +42,7 @@ function LoginPage() {
             <div className="auth-logo-nav">
                 
                 <div className="auth-logo">
-                    <img src="../../public/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                    <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
                     <p>Journey Ledger</p>
                 </div>
             </div>
