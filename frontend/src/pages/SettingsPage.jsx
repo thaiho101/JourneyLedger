@@ -2,7 +2,7 @@ import { useState } from "react";
 import AppLayout from "../components/AppLayout";
 import { changePassword } from "../services/settingsService";
 import "../styles/SettingsPage.css";
-import "../styles/journeyForm.css";
+import "../styles/JourneyForm.css";
 import { PiEyeClosedDuotone } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import { TbLockPassword } from "react-icons/tb";

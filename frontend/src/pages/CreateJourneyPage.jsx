@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createJourney } from "../services/journeyService";
 import AppLayout from "../components/AppLayout";
-import "../styles/common.css";
+import "../styles/Common.css";
 import "../styles/JourneyForm.css";
 
 function CreateJourneyPage() {
