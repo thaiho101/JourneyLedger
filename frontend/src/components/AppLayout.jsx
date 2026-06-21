@@ -38,7 +38,7 @@ function AppLayout({title, children}) {
         <aside className="sidebar">
             <div className="sidebar-logo">
                 <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
-                <p>JourneyLedger</p>    
+                <p>Journey Ledger</p>    
             </div>
            <div className="sidebar-user-wrapper">
                 <FaRegUserCircle className="sidebar-user-icon" />
