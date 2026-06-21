@@ -28,11 +28,66 @@ function RegisterPage() {
         navigate("/login");
     }
 
+    const countryCurrencies = {
+        "Argentina": "ARS",
+        "Australia": "AUD",
+        "Austria": "EUR",
+        "Belgium": "EUR",
+        "Brazil": "BRL",
+        "Canada": "CAD",
+        "Chile": "CLP",
+        "China": "CNY",
+        "Colombia": "COP",
+        "Czech Republic": "CZK",
+        "Denmark": "DKK",
+        "Egypt": "EGP",
+        "Finland": "EUR",
+        "France": "EUR",
+        "Germany": "EUR",
+        "Greece": "EUR",
+        "Hungary": "HUF",
+        "Iceland": "ISK",
+        "India": "INR",
+        "Indonesia": "IDR",
+        "Ireland": "EUR",
+        "Italy": "EUR",
+        "Japan": "JPY",
+        "Malaysia": "MYR",
+        "Maldives": "MVR",
+        "Mexico": "MXN",
+        "Morocco": "MAD",
+        "New Zealand": "NZD",
+        "Norway": "NOK",
+        "Philippines": "PHP",
+        "Portugal": "EUR",
+        "Qatar": "QAR",
+        "Russia": "RUB",
+        "Saudi Arabia": "SAR",
+        "Singapore": "SGD",
+        "South Africa": "ZAR",
+        "South Korea": "KRW",
+        "Spain": "EUR",
+        "Sweden": "SEK",
+        "Switzerland": "CHF",
+        "Taiwan": "TWD",
+        "Thailand": "THB",
+        "Turkey": "TRY",
+        "United Arab Emirates": "AED",
+        "United Kingdom": "GBP",
+        "United States": "USD",
+        "Vietnam": "VND"
+    };
+
   return (
     <div className="auth-page">
-        <div className="auth-card">
-            <h1 className="auth-logo">JourneyLedger</h1>
-            <h1 className="auth-title">Register</h1>
+        <div className="auth-logo-nav">
+            <div className="auth-logo">
+                <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                <p>Journey Ledger</p>
+            </div>
+        </div>
+        <div className="auth-card-register"> 
+            <h2 className="auth-title">Register</h2>
             <form className="auth-form auth-form-grid" onSubmit={handleRegister}>
                 <div className="auth-form-group">
                     <label >First Name</label>
@@ -44,7 +99,7 @@ function RegisterPage() {
 
                 <div className="auth-form-group">
                     <label >Last Name</label>
-                    <div className="input-form-group">
+                    <div className="input-form-group input-form-group-register">
                         <span className="input-icon"><IoPersonOutline /></span>
                         <input value={lastName} onChange={(e) => setLastName(e.target.value)} type='text' required placeholder="Enter your last name"/>
                     </div>
@@ -77,11 +132,9 @@ function RegisterPage() {
                 <div className="auth-form-group">
                     <label >Preferred Currency</label>
                     <select value={preferredCurrency} onChange={(e) => setPreferredCurrency(e.target.value)} >
-                        <option value='USD'>USD</option>
-                        <option value='VND'>VND</option>
-                        <option value='EUR'>EUR</option>
-                        <option value='JPY'>JPY</option>
-                        <option value='THB'>THB</option>
+                        {Object.entries(countryCurrencies).map(([country, code]) => 
+                            <option key={country} value={code} > {country} {code}</option>
+                        )}
                     </select>
                 </div>
 

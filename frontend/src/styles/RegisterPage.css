@@ -1,0 +1,20 @@
+
+
+.auth-card-register {
+    width: 100%;
+    max-width: 750px;
+    border: 1px solid #e2e2ea;
+    border-radius: 16px;
+    padding: 35px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+transform: scale(1);
+    backdrop-filter: blur(35px);
+    background: rgba(255, 255, 255, 0);
+    transition: box-shadow 0.5s, backdrop-filter 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.auth-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 24px;
+}

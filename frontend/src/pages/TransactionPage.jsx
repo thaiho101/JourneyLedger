@@ -344,7 +344,7 @@ function TransactionPage() {
                                         <select value={editCurrency} onChange={(e) => setEditCurrency(e.target.value)} disabled>
                                             {
                                                 Object.entries(countryCurrencies).map(([country, code]) => (
-                                                    <option key={code} value={code}>
+                                                    <option key={country} value={code}>
                                                         {code}
                                                     </option>
                                                 ))
