@@ -32,7 +32,10 @@ function AppLayout({title, children}) {
   return (
     <div className="app-layout">
         <aside className="sidebar">
-            <h2 className="sidebar-logo">JourneyLedger</h2>
+            <div className="sidebar-logo">
+                <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                <p>JourneyLedger</p>    
+            </div>
            <div className="sidebar-user-wrapper">
                 <FaRegUserCircle className="sidebar-user-icon" />
                 <p className="sidebar-user">{firstName} {lastName}</p>

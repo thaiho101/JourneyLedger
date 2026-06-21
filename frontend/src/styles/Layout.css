@@ -51,6 +51,14 @@
     letter-spacing: 0.5px;
 }
 
+.sidebar-logo p {
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;          
+    text-transform: uppercase; 
+    letter-spacing: 2px;      
+    font-size: 14px;
+}
+
 .sidebar-user-wrapper {
     display: flex;
     align-items: center;
@@ -199,6 +207,15 @@
   .sidebar-logo {
     font-size: 22px;
     margin-bottom: 12px;
+  }
+
+  .logo-img {
+    width: 120px;
+  }
+
+  .sidebar-logo p {
+    color: rgba(0, 0, 0, 0.571);
+    font-size: 12px;
   }
 
   .sidebar-user-wrapper {
