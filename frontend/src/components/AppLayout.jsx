@@ -4,6 +4,8 @@ import { getJourneys } from "../services/journeyService";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineTravelExplore, MdOutlineSettings } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
+import { FaArrowLeft } from "react-icons/fa6";
+
 
 
 function AppLayout({title, children}) {
@@ -13,6 +15,7 @@ function AppLayout({title, children}) {
     const isJourneyActive = location.pathname.startsWith("/journeys");
     const isPersonalAccountActive = location.pathname.startsWith("/account");
     const isSettingsPageActive = location.pathname.startsWith("/settings");
+    const isTransactionPageActive = location.pathname.includes("/transactions");
 
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
@@ -81,6 +84,12 @@ function AppLayout({title, children}) {
                 Settings
             </button>
         </div>
+
+        {isTransactionPageActive && (
+            <button onClick={() => navigate(-1)} className="mobile-back-btn">
+                <FaArrowLeft />
+            </button>
+        )}
 
     </div>
   );

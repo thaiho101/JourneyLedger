@@ -315,4 +315,22 @@ box-shadow: 8px 0px 8px 0px rgba(0, 0, 0, 0.259), inset 0px -10px 19px 0px rgba(
     font-weight: 700;
     color: #1a73e8;
 }
+
+.mobile-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    border-radius: 999px;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.488);
+    backdrop-filter: blur(5px);
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.344);
+
+    box-shadow: inset 0px 0px 15px white;
+}
 }
