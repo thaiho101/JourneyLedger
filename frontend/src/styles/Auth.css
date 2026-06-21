@@ -3,6 +3,7 @@
     background-color: #f7f7fb;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -25,39 +26,86 @@
 
 .auth-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;
     border: 1px solid #e2e2ea;
     border-radius: 16px;
-    padding: 55px;
+    padding: 35px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-
+transform: scale(1);
     backdrop-filter: blur(35px);
     background: rgba(255, 255, 255, 0);
-    transition: backdrop-filter .5s, transform .5s;
+    transition: box-shadow 0.5s, backdrop-filter 0.5s ease-in-out, background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .auth-card:hover {
     backdrop-filter: blur(2px);
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: inset 0px 0px 25px rgba(255, 255, 255, 0.466);
+}
+
+.auth-logo-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .auth-logo {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    margin-bottom: 50px;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
     text-align: center;
+    color: white;
+}
+
+.auth-logo p {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: -10px;
+}
+
+.greeting-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.greeting {
+  font-size: 12px;
+  background-color: #e6f0ff5b;
+  box-shadow: inset 0px 0px 5px white;
+  color: #0064B1;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 20px;
 }
 
 .auth-title {
     margin-bottom: 30px;
     text-align: center;
+    color: white;
+    font-size: 30px;
 }
 
 .auth-form-group label {
     display: block;
     margin-bottom: 15px;
     font-weight: 600;
+    color: rgba(2, 2, 2, 0.666);
 }
 
 .auth-form-group input, .auth-form-group select {
@@ -72,7 +120,7 @@
 }
 
 .auth-submit {
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -84,11 +132,15 @@
 
 .custom-link {
     text-decoration: none;
-    color: rgb(22, 119, 255);
+    color: rgb(4, 106, 248);
+}
+
+.custom-link:hover {
+    text-decoration: underline;
 }
 
 .auth-register {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .input-form-group {

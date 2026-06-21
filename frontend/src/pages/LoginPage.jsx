@@ -39,13 +39,23 @@ function LoginPage() {
 
     return (
         <div className="auth-page">
+            <div className="auth-logo-nav">
+                
+                <div className="auth-logo">
+                    <img src="../../public/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                    <p>Journey Ledger</p>
+                </div>
+            </div>
+            
             <div className="auth-card">
-                <h1 className="auth-logo">Journey Ledger</h1>
+                <div className="greeting-nav">
+                    <p className="greeting">WELCOME BACK!</p>
+                </div>
                 <h2 className="auth-title">Login</h2>
 
                 <form className="auth-form" onSubmit={handleLogin}>
                     <div className="auth-form-group">
-                        <label>Email</label>
+                        <label>Email address</label>
                         <div className="input-form-group">
                             <span className="input-icon"><MdOutlineMailOutline /></span>
                             <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' required placeholder="Enter email"/>
