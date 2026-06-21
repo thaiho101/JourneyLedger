@@ -1,0 +1,301 @@
+.sidebar-nav button.active-nav {
+  background-color: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+  box-shadow: inset 4px 0 0 white;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.btn-logout {
+    background: rgba(255, 255, 255, 0.578);
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0px 0px 19px 5px rgba(255, 255, 255, 0.706);
+    transition: backdrop-filter .5s, box-shadow .5s;
+}
+
+.btn-logout:hover {
+    /* background: rgba(255, 255, 255, 0); */
+    backdrop-filter: blur(2px);
+    /* box-shadow: 0 0 15px white; */
+    box-shadow: inset 0px 0px 19px 10px rgba(255, 255, 255, 0);
+}
+
+.sidebar {
+    width: 240px;
+    background-color: #1f2937;
+    color: white;
+    padding: 24px 16px;
+
+    background-image: url("../../public/images/login_background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+
+    box-shadow: 8px 0px 8px 0px rgb(0, 0, 0), inset 0px -10px 19px 0px rgba(255, 255, 255, 0.706);
+}
+
+.sidebar-logo {
+    margin-bottom: 24px;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-user-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    
+    padding: 10px 16px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+.sidebar-user-icon {
+    font-size: 22px;
+    color: white;
+}
+
+.sidebar-user {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-nav button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.sidebar-nav button:hover {
+    background-color: #374151;
+}
+
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+
+    background-color: rgba(255, 255, 255, 0.85);
+
+}
+
+.topbar {
+    height: 70px;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+
+    background-image: url("../../public/images/login_background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    background-position: 30% 40%;
+
+    box-shadow: inset 0px -10px 19px 0px rgba(255, 255, 255, 0.706);
+}
+
+.topbar-title {
+    font-size: 24px;
+    font-weight: bold;
+
+        margin-top: 10px;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #1e293b;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.content-area {
+    flex: 1;
+    padding: 24px;
+
+    
+}
+
+.sidebar-nav button.sidebar-logout {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    gap: 10px;
+    justify-content: space-between;
+    /* font-size: 70px; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .sidebar-nav {
+        display: none;
+    }
+    
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+    box-shadow: none;
+  }
+
+  .sidebar-logo {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .sidebar-user-wrapper {
+    margin-bottom: 14px;
+    padding: 8px 12px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+  }
+
+  .sidebar-nav button {
+    text-align: center;
+    white-space: nowrap;
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .topbar {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .topbar-title {
+    font-size: 20px;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .btn-logout {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .content-area {
+    padding: 1px;
+    padding-bottom: 80px;
+  }
+
+.mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+    
+    justify-content: space-around;
+    align-items: center;
+    z-index: 999;
+    height: 65px; 
+
+
+box-shadow: 8px 0px 8px 0px rgba(0, 0, 0, 0.259), inset 0px -10px 19px 0px rgba(255, 255, 255, 0.706);
+}
+
+.mobile-nav button {
+    border: none;
+    background: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: color 0.3s;
+    width: 230px;
+    height: 100%;
+    border-radius: 0px;
+}
+
+.sidebar-user-icon {
+    font-size: 22px;
+    color: goldenrod;
+}
+
+.sidebar-user {
+    font-size: 16px;
+    color: goldenrod;
+    text-shadow: 0px 0px 15px rgb(255, 255, 255);
+}
+
+.mobile-nav button.active-nav {
+    background-color: rgba(255, 255, 255, 0.25);
+    font-weight: 700;
+    color: #1a73e8;
+}
+}

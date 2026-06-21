@@ -1,0 +1,238 @@
+.section-title, .summary-title {
+    color: #334155;
+    font-weight: 600;
+}
+
+.summary-card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.summary-content {
+    display: flex;
+    gap: 10px;
+}
+
+.summary-item {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.206);
+  transition: transform .5s;
+}
+
+.summary-item:hover {
+    transform: translateY(-10%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.309);
+}
+
+.summary-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.totalDeposit {
+    color: green;
+}
+
+.totalExpense {
+    color: rgb(253, 121, 73);
+}
+
+.deposit-color {
+    color: green;
+}
+
+.expense-color {
+    color: rgb(253, 121, 73);
+}
+
+.text-muted {
+    color: #6666668c;
+}
+
+.form-card {
+
+}
+
+.transaction-form {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column; 
+    gap: 6px;
+    flex: 1;
+    min-width: 140px;
+}
+
+.form-row:nth-child(3) {
+    flex: 2; 
+}
+
+.form-row input, .form-row select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.transaction-form .btn-primary {
+    width: auto;
+    height: 38px;
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+.form-row label {
+    width: 120px;
+    font-weight: 600;
+}
+
+.transaction-table {
+    width: 100%;
+}
+
+.transaction-table tbody tr:hover {
+    background-color: #f5f7fb;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.table-card {
+    overflow-y: auto;
+    max-height: calc(100vh - 430px);
+}
+
+.transaction-table thead th {
+position: sticky;
+    top: 0;
+    background: #f1f3f5;
+    color: #343a40;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 2px solid #cfcfd8;
+    z-index: 1;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+    .hide-on-mobile {
+        display: none;
+    }
+  .summary-content {
+    /* flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 1fr 1fr);
+    gap: 10px;
+  }
+
+  .section-title, .summary-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .summary-item {
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-row label {
+    width: 100%;
+  }
+
+  .form-row input,
+  .form-row select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .transaction-table {
+    min-width: 900px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+
+
+
+  .fixed-col-date {
+    width: 100px;      
+    min-width: 100px;
+    max-width: 160px;
+    white-space: normal; 
+    word-wrap: break-word;
+    font-size: 14px;   
+}
+
+
+.fixed-col-date input[type="datetime-local"] {
+    width: 100%;
+    padding: 6px 4px;
+    font-size: 13px;
+}
+
+
+
+  
+}

@@ -1,0 +1,9 @@
+.auth-page {
+
+}
+
+.auth-card {
+    backdrop-filter: blur(35px);
+    background: rgba(255, 255, 255, 0);
+    transition: backdrop-filter .5s, transform .5s;
+}
