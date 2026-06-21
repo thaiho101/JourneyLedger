@@ -19,13 +19,19 @@ function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
 
     async function handleRegister(event) {
-        event.preventDefault();
+        try {
+            event.preventDefault();
 
-        const data = await register(firstName, lastName, email, password, preferredCurrency);
+            const data = await register(firstName, lastName, email, password, preferredCurrency);
 
-        console.log(data);
+            console.log(data);
+            alert("✨ Registration successful! Welcome to Journey Ledger!")
 
-        navigate("/login");
+            navigate("/login");       
+        } catch (error) {
+            
+        }
+
     }
 
     const countryCurrencies = {

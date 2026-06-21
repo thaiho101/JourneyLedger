@@ -204,4 +204,16 @@ input::placeholder {
     .auth-form-grid {
         grid-template-columns: 1fr;
     }
+
+    .logo-img {
+        width: 150px;
+    }
+
+    .auth-logo p {
+        font-family: 'Montserrat', sans-serif; 
+        font-weight: 600;          
+        text-transform: uppercase; 
+        letter-spacing: 2px;      
+        font-size: 14px;
+    }
 }
