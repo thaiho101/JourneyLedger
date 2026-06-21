@@ -181,18 +181,24 @@ input::placeholder {
     color: rgba(128, 128, 128, 0.491);
 }
 
-
-.auth-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 24px;
-}
-
 .auth-form-group.full-width,
 .auth-submit,
 .auth-links {
     grid-column: 1 / -1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 768px) {
     .auth-form-grid {

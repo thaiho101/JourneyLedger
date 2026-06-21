@@ -40,7 +40,6 @@ function LoginPage() {
     return (
         <div className="auth-page">
             <div className="auth-logo-nav">
-                
                 <div className="auth-logo">
                     <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
                     <p>Journey Ledger</p>
