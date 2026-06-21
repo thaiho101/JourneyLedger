@@ -30,9 +30,14 @@ function RegisterPage() {
 
   return (
     <div className="auth-page">
-        <div className="auth-card">
-            <h1 className="auth-logo">JourneyLedger</h1>
-            <h1 className="auth-title">Register</h1>
+        <div className="auth-logo-nav">
+            <div className="auth-logo">
+                <img src="/logo/logo.png" alt="Journey Ledger Logo" className="logo-img" />
+                <p>Journey Ledger</p>
+            </div>
+        </div>
+        <div className="auth-card"> 
+            <h2 className="auth-title">Register</h2>
             <form className="auth-form auth-form-grid" onSubmit={handleRegister}>
                 <div className="auth-form-group">
                     <label >First Name</label>
