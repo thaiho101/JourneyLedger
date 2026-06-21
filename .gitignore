@@ -8,3 +8,6 @@ backend/target/
 
 .vscode/
 .idea/
+
+.env
+.env.*
