@@ -1,12 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { createTransaction, deleteTransaction, getTransactions, updateTransaction } from "../services/transactionService";
+import { createTransaction, deleteTransaction, getCategorySummary, getTransactions, updateTransaction } from "../services/transactionService";
 import { useNavigate } from "react-router-dom";
 import { getJourneyById } from "../services/journeyService";
 import "../styles/TransactionPage.css";
 import "../styles/Common.css";
 import AppLayout from "../components/AppLayout";
 import { FaTrash } from "react-icons/fa";
+
+import {
+    FaCar,
+    FaHotel,
+    FaUtensils,
+    FaGamepad,
+    FaShoppingBag,
+    FaShieldAlt,
+    FaEllipsisH
+} from "react-icons/fa";
 
 function TransactionPage() {
     const [transactions, setTransactions] = useState([]);
@@ -32,6 +42,8 @@ function TransactionPage() {
     
     const [defaultCurrency, setDefaultCurrency] = useState("USD");
 
+    const [categorySummary, setCategorySummary] = useState([]);
+
     console.log("journeyId:", journeyId);
     console.log("token:", localStorage.getItem("authToken"));
 
@@ -53,6 +65,9 @@ function TransactionPage() {
                 transactionData.sort((a, b) => new Date(b.transactionDate) - new Date(a.transactionDate));
 
                 setTransactions(transactionData);
+
+                const summaryData = await getCategorySummary(journeyId);
+                setCategorySummary(summaryData);
 
             } catch (error) {
                 localStorage.removeItem("authToken");
@@ -235,6 +250,45 @@ function TransactionPage() {
     "Vietnam": "VND"
     };
 
+    function getCategoryIcon(category) {
+        switch (category) {
+            case "TRANSPORTATION":
+                return <FaCar />;
+            case "ACCOMMODATION":
+                return <FaHotel />;
+            case "FOOD":
+                return <FaUtensils />;
+            case "ENTERTAINMENT":
+                return <FaGamepad />;
+            case "SHOPPING":
+                return <FaShoppingBag />;
+            case "INSURANCE":
+                return <FaShieldAlt />;
+            default:
+                return <FaEllipsisH />;
+        }
+    }
+
+    const allCategories = [
+    "TRANSPORTATION",
+    "ACCOMMODATION",
+    "FOOD",
+    "ENTERTAINMENT",
+    "SHOPPING",
+    "INSURANCE",
+    "OTHER"
+    ];
+
+    const completedCategorySummary = allCategories.map((category) => {
+        const found = categorySummary.find((item) => item.category === category);
+
+        return {
+            category: category,
+            totalExpense: found ? found.totalExpense : 0,
+            percentage: found ? found.percentage : 0
+        };
+    });
+
 
     return (
         <AppLayout title={journeyName + " - Transaction Details"}>
@@ -326,6 +380,29 @@ function TransactionPage() {
                 
             </div>
 
+            <div className="category-summary-card">
+                {completedCategorySummary.map((item) => (
+                    <div key={item.category} className={`category-summary-row ${item.category.toLowerCase()}`}>
+                        <div className={`category-info ${item.category.toLowerCase()}`}>
+                            <span className="category-icon">
+                                {getCategoryIcon(item.category)}
+                            </span>
+                            <span className="category-name">{item.category.charAt(0).toUpperCase() + item.category.slice(1).toLowerCase()}</span>
+                        </div>
+
+                        <span className="category-amount">
+                            ${Number(item.totalExpense).toLocaleString("en-US", {
+                                minimumFractionDigits: 2
+                            })}
+                        </span>
+
+                        <span className="category-percentage">
+                            {item.percentage}%
+                        </span>
+                    </div>
+                ))}
+            </div>
+
             <div className="table-card">
                 <table className="transaction-table">
                     <thead>
@@ -395,7 +472,7 @@ function TransactionPage() {
                                 ) : (
                                     <>
                                         <td className="fixed-col-date">{formatDate(transaction.transactionDate)}</td>
-                                        <td>{transaction.category}</td>
+                                        <td>{transaction.category.charAt(0).toUpperCase() + transaction.category.slice(1).toLowerCase()}</td>
                                         <td>{transaction.description}</td>
                                         <td className={getAmountClass(transaction.amount, transaction.type === "DEPOSIT" ? "DEPOSIT" : null)}>{transaction.type === "DEPOSIT" ? transaction.amount.toLocaleString('en-US', { minimumFractionDigits: 2 }) 
                                                                             : (0).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>

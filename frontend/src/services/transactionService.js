@@ -102,3 +102,24 @@ export async function updateTransaction(journeyId, transactionId, amount, descri
     return response.json();
 
 }
+
+export async function getCategorySummary(journeyId) {
+    const token = localStorage.getItem("authToken");
+
+    const response = await fetch(
+        `${API_BASE_URL}/api/journeys/${journeyId}/transactions/category-summary`,
+        {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    )
+
+    if (!response.ok) {
+        console.log("Get category summary failed", response.status);
+        throw new Error(response.status.toString());
+    }
+
+    return response.json();
+}

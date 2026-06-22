@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.fortuneterm.journeyledger.dto.CategorySummaryResponse;
 import com.fortuneterm.journeyledger.dto.CreateTransactionRequest;
 import com.fortuneterm.journeyledger.dto.TransactionResponse;
 import com.fortuneterm.journeyledger.dto.UpdateTransactionRequest;
 import com.fortuneterm.journeyledger.entity.Journey;
 import com.fortuneterm.journeyledger.entity.Transaction;
 import com.fortuneterm.journeyledger.entity.User;
+import com.fortuneterm.journeyledger.enums.TransactionCategory;
 import com.fortuneterm.journeyledger.exception.InvalidCredentialsException;
 import com.fortuneterm.journeyledger.exception.JourneyIdNotFoundException;
 import com.fortuneterm.journeyledger.exception.TransactionNotFoundException;
@@ -20,6 +22,9 @@ import com.fortuneterm.journeyledger.repository.TransactionRepository;
 import com.fortuneterm.journeyledger.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 @Service
@@ -167,5 +172,39 @@ public class TransactionService {
         Transaction transaction = transactionRepository.findByIdAndJourney(transactionId, journey).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
 
         transactionRepository.delete(transaction);
+    }
+
+    public List<CategorySummaryResponse> getCategorySummary(Long journeyId, Authentication authentication) {
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        Long userId = user.getId();
+
+        Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
+
+        if (!userId.equals(journey.getUser().getId())) {
+            throw new InvalidCredentialsException("You do not have access to this journey");
+        }
+
+        List<Object[]> results = transactionRepository.findExpenseSummaryByCategory(journeyId);
+
+        BigDecimal totalExpense = results.stream().map(row -> (BigDecimal) row[1]).reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        if (totalExpense.compareTo(BigDecimal.ZERO) == 0) {
+            return List.of();
+        }
+
+        return results.stream()
+                .map(row -> {
+                    TransactionCategory category = (TransactionCategory) row[0];
+                    BigDecimal categoryTotal = (BigDecimal) row[1];
+
+                    double percentage = categoryTotal
+                    .multiply(BigDecimal.valueOf(100))
+                    .divide(totalExpense, 2, RoundingMode.HALF_UP)
+                    .doubleValue();
+
+                    return new CategorySummaryResponse(category, categoryTotal, percentage);
+                }).toList();
     }
 }
