@@ -63,7 +63,7 @@
 }
 
 .form-card {
-
+    margin-bottom: 10px;
 }
 
 .transaction-form {
@@ -140,6 +140,140 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
     background-color: #f8f9fa;
 }
+
+
+
+.category-summary-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    margin-top: 10px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.category-summary-card h3 {
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.category-summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 80px;
+    align-items: center;
+    gap: 16px;
+    padding: 2px 0;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.category-summary-row:last-child {
+    border-bottom: none;
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.category-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.category-info.transportation .category-icon {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.category-info.accommodation .category-icon {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.category-info.food .category-icon {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.category-info.entertainment .category-icon {
+    background: #fce7f3;
+    color: #db2777;
+}
+
+.category-info.shopping .category-icon {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.category-info.insurance .category-icon {
+    background: #ccfbf1;
+    color: #0f766e;
+}
+
+.category-info.other .category-icon {
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+.category-name {
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.category-amount {
+    font-weight: 500;
+    color: #0f172a;
+    text-align: right;
+}
+
+.category-percentage {
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.accommodation .category-amount {
+    color: #7c3aed;
+}
+
+.food .category-amount {
+    color: #16a34a;
+}
+
+.shopping .category-amount {
+    color: #ea580c;
+}
+
+.transportation .category-amount {
+    color: #2563eb;
+}
+
+.entertainment .category-amount {
+    color: #db2777;
+}
+
+.insurance .category-amount {
+    color: #0f766e;
+}
+
+
 
 
 
@@ -232,7 +366,28 @@ tbody tr:nth-child(even) {
     font-size: 13px;
 }
 
+    .category-summary-card {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
 
+    .category-name {
+        display: none;
+    }
 
-  
+    .category-summary-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+    }
+
+    .category-amount,
+    .category-percentage {
+        text-align: left;
+    }
+
+    .category-percentage {
+        width: fit-content;
+    }
 }

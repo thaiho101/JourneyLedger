@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fortuneterm.journeyledger.dto.CategorySummaryResponse;
 import com.fortuneterm.journeyledger.dto.CreateTransactionRequest;
 import com.fortuneterm.journeyledger.dto.TransactionResponse;
 import com.fortuneterm.journeyledger.dto.UpdateTransactionRequest;
@@ -36,6 +37,11 @@ public class TransactionController {
         return transactionService.getTransactionByJourney(journeyId, authentication);
     }
 
+    @GetMapping("/category-summary")
+    public ResponseEntity<List<CategorySummaryResponse>> getCategorySummary(@PathVariable Long journeyId, Authentication authentication) {
+        return ResponseEntity.ok(transactionService.getCategorySummary(journeyId, authentication));
+    }
+
     @GetMapping("/{transactionId}")
     public TransactionResponse getTransactionById(@PathVariable Long journeyId, @PathVariable Long transactionId, Authentication authentication) {
         return transactionService.getTransactionById(journeyId, transactionId, authentication);
@@ -51,4 +57,6 @@ public class TransactionController {
         transactionService.deleteTransaction(journeyId, transactionId, authentication);
         return ResponseEntity.noContent().build();
     }
+
+
 }
