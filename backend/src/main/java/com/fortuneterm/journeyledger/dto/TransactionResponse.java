@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 import com.fortuneterm.journeyledger.enums.TransactionType;
 import com.fortuneterm.journeyledger.enums.Currency;
-
+import com.fortuneterm.journeyledger.enums.TransactionCategory;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,4 +19,5 @@ public class TransactionResponse {
     private Currency currency;
     private TransactionType type;
     private LocalDateTime transactionDate;
+    private TransactionCategory category;
 }

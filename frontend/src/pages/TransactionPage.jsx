@@ -16,7 +16,9 @@ function TransactionPage() {
 
     const [currency, setCurrency] = useState("");
     const [transactionDate, setTransactionDate] = useState("");
-    const [description, setDescription] = useState("");
+
+    const [category, setCategory] = useState("");
+    const [description, setDescription] = useState("...");
     const [depositAmount, setDepositAmount] = useState("");
     const [expenseAmount, setExpenseAmount] = useState("");
 
@@ -82,7 +84,7 @@ function TransactionPage() {
             return;
         }
 
-        const newTransaction = await createTransaction(journeyId, amount, description, currency, type, transactionDate);
+        const newTransaction = await createTransaction(journeyId, amount, description, currency, type, transactionDate, category);
 
         if (!newTransaction) {
             return;
@@ -154,9 +156,10 @@ function TransactionPage() {
         } 
 
         try {
-            const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate);
+            const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate, category);
             setTransactions(transactions.map(t => t.id === transactionId ? updatedTransaction : t));
             setEditingTransactionId(null);    
+            setCategory("");
             console.log(updatedTransaction);
             alert("✅ Changes saved successfully!")
         } catch (error) {
@@ -257,8 +260,22 @@ function TransactionPage() {
                     </div>
 
                     <div className="form-row">
+                        <label >Category</label>
+                        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <option value="">Select category</option>
+                            <option value="TRANSPORTATION">Transportation</option>
+                            <option value="ACCOMMODATION">Accommodation</option>
+                            <option value="FOOD">Food</option>
+                            <option value="ENTERTAINMENT">Entertainment</option>
+                            <option value="SHOPPING">Shopping</option>
+                            <option value="INSURANCE">Insurance</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+
+                    <div className="form-row">
                         <label >Description</label>
-                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" required/>
+                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text"/>
                     </div>
 
                     <div className="form-row">
@@ -312,6 +329,7 @@ function TransactionPage() {
                     <thead>
                         <tr>
                             <th className="fixed-col-date">Date</th>
+                            <th>Category</th>
                             <th>Description</th>
                             <th>Deposit</th>
                             <th>Expense</th>
@@ -326,6 +344,19 @@ function TransactionPage() {
                                 <>
                                     <td className="fixed-col-date">
                                         <input type="datetime-local" value={editTransactionDate} onChange={(e) => setEditTransactionDate(e.target.value)}/>
+                                    </td>
+
+                                    <td>
+                                            <select value={transaction.category} onChange={(e) => setCategory(e.target.value)}>
+                                                <option value="">Select category</option>
+                                                <option value="TRANSPORTATION">Transportation</option>
+                                                <option value="ACCOMMODATION">Accommodation</option>
+                                                <option value="FOOD">Food</option>
+                                                <option value="ENTERTAINMENT">Entertainment</option>
+                                                <option value="SHOPPING">Shopping</option>
+                                                <option value="INSURANCE">Insurance</option>
+                                                <option value="OTHER">Other</option>
+                                            </select>
                                     </td>
 
                                     <td>
@@ -362,6 +393,7 @@ function TransactionPage() {
                                 ) : (
                                     <>
                                         <td className="fixed-col-date">{formatDate(transaction.transactionDate)}</td>
+                                        <td>{transaction.category}</td>
                                         <td>{transaction.description}</td>
                                         <td className={getAmountClass(transaction.amount, transaction.type === "DEPOSIT" ? "DEPOSIT" : null)}>{transaction.type === "DEPOSIT" ? transaction.amount.toLocaleString('en-US', { minimumFractionDigits: 2 }) 
                                                                             : (0).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>

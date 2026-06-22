@@ -21,7 +21,7 @@ export async function getTransactions(journeyId) {
     return response.json();
 }
 
-export async function createTransaction(journeyId, amount, description, currency, type, transactionDate) {
+export async function createTransaction(journeyId, amount, description, currency, type, transactionDate, category) {
     const token = localStorage.getItem('authToken');
 
     const response = await fetch(
@@ -37,7 +37,8 @@ export async function createTransaction(journeyId, amount, description, currency
                 description, 
                 currency, 
                 type, 
-                transactionDate
+                transactionDate,
+                category
             }),
         }
     );
@@ -71,7 +72,7 @@ export async function deleteTransaction(journeyId, transactionId) {
     return true;
 }
 
-export async function updateTransaction(journeyId, transactionId, amount, description, currency, type, transactionDate) {
+export async function updateTransaction(journeyId, transactionId, amount, description, currency, type, transactionDate, category) {
     const token = localStorage.getItem("authToken");
     
     const response = await fetch(
@@ -87,7 +88,8 @@ export async function updateTransaction(journeyId, transactionId, amount, descri
                 description,
                 currency,
                 type,
-                transactionDate
+                transactionDate,
+                category
             })
         }
     );
