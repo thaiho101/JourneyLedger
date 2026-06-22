@@ -281,7 +281,7 @@ function TransactionPage() {
                     </div>
 
                     <div className="form-row">
-                        <label >Deposit</label>
+                        <label >Budget</label>
                         <input value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} type="number" min="0"/>
                     </div>
 
@@ -299,7 +299,7 @@ function TransactionPage() {
                 <h2 className="summary-title">Summary</h2>
                 <div className="summary-content">
                     <div className="summary-item">
-                        <div className="summary-label">Total Deposit</div>
+                        <div className="summary-label">Travel Budget</div>
                         <div className="summary-value totalDeposit">
                             {totalDeposit.toLocaleString("en-US", { minimumFractionDigits: 2})} {currency}
                         </div>
@@ -315,7 +315,7 @@ function TransactionPage() {
                     </div>
                     
                     <div className="summary-item">
-                        <div className="summary-label">Balance</div>
+                        <div className="summary-label">Remaining Balance</div>
                         <div className="summary-value">
                             {balance.toLocaleString("en-US", {
                                 minimumFractionDigits: 2
@@ -333,7 +333,7 @@ function TransactionPage() {
                             <th className="fixed-col-date">Date</th>
                             <th>Category</th>
                             <th>Description</th>
-                            <th>Deposit</th>
+                            <th>Budget</th>
                             <th>Expense</th>
                             <th className="hide-on-mobile">Currency</th>
                             <th>Actions</th>
