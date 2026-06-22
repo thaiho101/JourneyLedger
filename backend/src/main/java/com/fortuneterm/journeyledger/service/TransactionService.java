@@ -48,6 +48,7 @@ public class TransactionService {
         transaction.setCurrency(req.getCurrency());
         transaction.setType(req.getType());
         transaction.setTransactionDate(req.getTransactionDate());
+        transaction.setCategory(req.getCategory());
 
         Transaction savedTrans = transactionRepository.save(transaction);
 
@@ -58,6 +59,7 @@ public class TransactionService {
         res.setCurrency(savedTrans.getCurrency());
         res.setType(savedTrans.getType());
         res.setTransactionDate(savedTrans.getTransactionDate());
+        res.setCategory(savedTrans.getCategory());
 
         return res;
     }
@@ -85,6 +87,7 @@ public class TransactionService {
             res.setCurrency(transaction.getCurrency());
             res.setType(transaction.getType());
             res.setTransactionDate(transaction.getTransactionDate());
+            res.setCategory((transaction.getCategory()));
 
             responses.add(res);
         }
@@ -111,6 +114,7 @@ public class TransactionService {
         res.setCurrency(transaction.getCurrency());
         res.setType(transaction.getType());
         res.setTransactionDate(transaction.getTransactionDate());
+        res.setCategory(transaction.getCategory());
 
         return res;
     }
@@ -133,6 +137,7 @@ public class TransactionService {
         transaction.setCurrency(req.getCurrency());
         transaction.setType(req.getType());
         transaction.setTransactionDate(req.getTransactionDate());
+        transaction.setCategory(req.getCategory());
 
         Transaction savedTransaction = transactionRepository.save(transaction);
 
@@ -143,6 +148,7 @@ public class TransactionService {
         res.setCurrency(savedTransaction.getCurrency());
         res.setType(savedTransaction.getType());
         res.setTransactionDate(savedTransaction.getTransactionDate());
+        res.setCategory(savedTransaction.getCategory());
 
         return res;
     }

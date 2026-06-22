@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.fortuneterm.journeyledger.enums.TransactionType;
 import com.fortuneterm.journeyledger.enums.Currency;
+import com.fortuneterm.journeyledger.enums.TransactionCategory;
 
 @Entity
 @Table(name = "transactions")
@@ -47,4 +48,8 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false)
     private Currency currency;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false)
+    private TransactionCategory category;
 }

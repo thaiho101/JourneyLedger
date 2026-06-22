@@ -3,7 +3,7 @@ package com.fortuneterm.journeyledger.dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.fortuneterm.journeyledger.enums.Currency;
-
+import com.fortuneterm.journeyledger.enums.TransactionCategory;
 import com.fortuneterm.journeyledger.enums.TransactionType;
 
 import jakarta.validation.constraints.NotBlank;
@@ -20,7 +20,6 @@ public class CreateTransactionRequest {
     @Positive
     private BigDecimal amount;
     
-    @NotBlank
     private String description;
     
     @NotNull
@@ -31,4 +30,7 @@ public class CreateTransactionRequest {
     
     @NotNull
     private LocalDateTime transactionDate;
+
+    @NotNull(message = "Category is required")
+    private TransactionCategory category;
 }
