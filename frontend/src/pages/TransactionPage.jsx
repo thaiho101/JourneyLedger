@@ -25,6 +25,7 @@ function TransactionPage() {
     const [editingTransactionId, setEditingTransactionId] = useState(null);
     const [editCurrency, setEditCurrency] = useState("");
     const [editTransactionDate, setEditTransactionDate] = useState("");
+    const [editCategory, setEditCategory] = useState("");
     const [editDescription, setEditDescription] = useState("");
     const [editDepositAmount, setEditDepositAmount] = useState("");
     const [editExpenseAmount, setEditExpenseAmount] = useState("");
@@ -125,6 +126,7 @@ function TransactionPage() {
         setEditingTransactionId(transaction.id);
         setEditCurrency(transaction.currency);
         setEditTransactionDate(transaction.transactionDate);
+        setEditCategory(transaction.category);
         setEditDescription(transaction.description);
         setEditDepositAmount(deposit);
         setEditExpenseAmount(expense);
@@ -156,7 +158,7 @@ function TransactionPage() {
         } 
 
         try {
-            const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate, category);
+            const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate, editCategory);
             setTransactions(transactions.map(t => t.id === transactionId ? updatedTransaction : t));
             setEditingTransactionId(null);    
             setCategory("");
@@ -347,7 +349,7 @@ function TransactionPage() {
                                     </td>
 
                                     <td>
-                                            <select value={transaction.category} onChange={(e) => setCategory(e.target.value)}>
+                                            <select value={editCategory} onChange={(e) => setEditCategory(e.target.value)}>
                                                 <option value="">Select category</option>
                                                 <option value="TRANSPORTATION">Transportation</option>
                                                 <option value="ACCOMMODATION">Accommodation</option>
