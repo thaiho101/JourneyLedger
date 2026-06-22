@@ -63,7 +63,7 @@
 }
 
 .form-card {
-
+    margin-bottom: 10px;
 }
 
 .transaction-form {
@@ -147,12 +147,13 @@ tbody tr:nth-child(even) {
     background: #ffffff;
     border-radius: 18px;
     padding: 22px;
-    margin-top: 24px;
+    margin-top: 10px;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
     border: 1px solid #e5e7eb;
     grid-template-columns: 1fr 1fr 1fr;
     display: grid;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 .category-summary-card h3 {
@@ -233,7 +234,7 @@ tbody tr:nth-child(even) {
 }
 
 .category-amount {
-    font-weight: 700;
+    font-weight: 500;
     color: #0f172a;
     text-align: right;
 }
@@ -365,10 +366,19 @@ tbody tr:nth-child(even) {
     font-size: 13px;
 }
 
+    .category-summary-card {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
 
+    .category-name {
+        display: none;
+    }
 
-      .category-summary-row {
-        grid-template-columns: 1fr;
+    .category-summary-row {
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 8px;
     }
 
