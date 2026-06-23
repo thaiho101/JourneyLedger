@@ -79,6 +79,11 @@ function TransactionPage() {
 
     }, [journeyId, navigate]);
 
+    async function refreshCategorySummary() {
+        const summaryData = await getCategorySummary(journeyId);
+        setCategorySummary(summaryData);
+    }
+
     async function handleLogout(event) {
         localStorage.removeItem('authToken');
         navigate("/login");
@@ -107,6 +112,9 @@ function TransactionPage() {
         }
 
         setTransactions([newTransaction, ...transactions]);
+
+        await refreshCategorySummary();
+
         setDescription("");
         setDepositAmount("");
         setExpenseAmount("");
@@ -122,6 +130,9 @@ function TransactionPage() {
         try {
             await deleteTransaction(journeyId, transactionId);
             setTransactions(transactions.filter(transaction => transaction.id !== transactionId));
+
+            await refreshCategorySummary();
+
             alert("✅ Transaction deleted successfully!");
         } catch (error) {
             alert("❌ Delete failed! Please try again.");
@@ -175,6 +186,9 @@ function TransactionPage() {
         try {
             const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate, editCategory);
             setTransactions(transactions.map(t => t.id === transactionId ? updatedTransaction : t));
+
+            await refreshCategorySummary();
+
             setEditingTransactionId(null);    
             setCategory("");
             console.log(updatedTransaction);
