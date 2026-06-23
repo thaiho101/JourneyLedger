@@ -79,6 +79,11 @@ function TransactionPage() {
 
     }, [journeyId, navigate]);
 
+    async function refreshCategorySummary() {
+        const summaryData = await getCategorySummary(journeyId);
+        setCategorySummary(summaryData);
+    }
+
     async function handleLogout(event) {
         localStorage.removeItem('authToken');
         navigate("/login");
@@ -107,6 +112,9 @@ function TransactionPage() {
         }
 
         setTransactions([newTransaction, ...transactions]);
+
+        await refreshCategorySummary();
+
         setDescription("");
         setDepositAmount("");
         setExpenseAmount("");
@@ -122,6 +130,9 @@ function TransactionPage() {
         try {
             await deleteTransaction(journeyId, transactionId);
             setTransactions(transactions.filter(transaction => transaction.id !== transactionId));
+
+            await refreshCategorySummary();
+
             alert("✅ Transaction deleted successfully!");
         } catch (error) {
             alert("❌ Delete failed! Please try again.");
@@ -175,6 +186,9 @@ function TransactionPage() {
         try {
             const updatedTransaction = await updateTransaction(journeyId, transactionId, amount, editDescription, editCurrency, type, editTransactionDate, editCategory);
             setTransactions(transactions.map(t => t.id === transactionId ? updatedTransaction : t));
+
+            await refreshCategorySummary();
+
             setEditingTransactionId(null);    
             setCategory("");
             console.log(updatedTransaction);
@@ -297,7 +311,7 @@ function TransactionPage() {
                 <h2 className="section-title">Add New Transaction</h2>
 
                 <form onSubmit={handleCreateTransaction} className="transaction-form">
-                    <div className="form-row">
+                    <div className="form-row currency-select">
                         <label >Currency</label>
                         <select value={currency} disabled>
                             {
@@ -381,6 +395,7 @@ function TransactionPage() {
             </div>
 
             <div className="category-summary-card">
+                <h4>Category Breakdown ({currency})</h4>
                 {completedCategorySummary.map((item) => (
                     <div key={item.category} className={`category-summary-row ${item.category.toLowerCase()}`}>
                         <div className={`category-info ${item.category.toLowerCase()}`}>
@@ -390,15 +405,20 @@ function TransactionPage() {
                             <span className="category-name">{item.category.charAt(0).toUpperCase() + item.category.slice(1).toLowerCase()}</span>
                         </div>
 
-                        <span className="category-amount">
-                            ${Number(item.totalExpense).toLocaleString("en-US", {
-                                minimumFractionDigits: 2
-                            })}
-                        </span>
+                        <div className="category-amount-percentage">
 
-                        <span className="category-percentage">
-                            {item.percentage}%
-                        </span>
+                            <span className="category-amount">
+                                {Number(item.totalExpense).toLocaleString("en-US", {
+                                    minimumFractionDigits: 2
+                                })}
+                            </span>
+
+                            <span className="category-percentage">
+                                {item.percentage}%
+                            </span>
+
+                        </div>
+
                     </div>
                 ))}
             </div>
