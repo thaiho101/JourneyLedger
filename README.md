@@ -120,7 +120,6 @@ JourneyLedger is deployed on a Raspberry Pi using:
 - Forgot Password
 - Exchange Rate Integration
 - Dashboard Analytics
-- Budget Tracking
 - Search & Filtering
 
 ## Author
