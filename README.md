@@ -45,14 +45,18 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 ### Login Page
 
 <img width="1512" height="827" alt="image" src="https://github.com/user-attachments/assets/e7ff9f4e-4776-4139-9c49-5e66b033a8b9" />
+<img width="338" height="734" alt="image" src="https://github.com/user-attachments/assets/152b1c5f-0b80-4bff-943e-5999e87fd09a" />
+
 
 ### Journey Dashboard
 
 <img width="1512" height="826" alt="image" src="https://github.com/user-attachments/assets/a439d71e-d840-44b9-9a87-5b90ad650b2e" />
+<img width="341" height="736" alt="image" src="https://github.com/user-attachments/assets/95a22e5f-a5e2-46c7-8905-61149541d17b" />
 
 ### Transactions
 
 <img width="1508" height="828" alt="image" src="https://github.com/user-attachments/assets/cb2668b9-4e4d-40ff-a233-edeaa307d7b1" />
+<img width="341" height="736" alt="image" src="https://github.com/user-attachments/assets/4e40a1e9-6c30-487d-b7ce-2b808fcf5405" />
 
 
 ## API Endpoints
