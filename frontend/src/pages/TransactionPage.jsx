@@ -311,7 +311,7 @@ function TransactionPage() {
                 <h2 className="section-title">Add New Transaction</h2>
 
                 <form onSubmit={handleCreateTransaction} className="transaction-form">
-                    <div className="form-row">
+                    <div className="form-row currency-select">
                         <label >Currency</label>
                         <select value={currency} disabled>
                             {
