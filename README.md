@@ -44,15 +44,16 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 
 ### Login Page
 
-(Add screenshot here)
+<img width="1512" height="827" alt="image" src="https://github.com/user-attachments/assets/e7ff9f4e-4776-4139-9c49-5e66b033a8b9" />
 
 ### Journey Dashboard
 
-(Add screenshot here)
+<img width="1512" height="826" alt="image" src="https://github.com/user-attachments/assets/a439d71e-d840-44b9-9a87-5b90ad650b2e" />
 
 ### Transactions
 
-(Add screenshot here)
+<img width="1508" height="828" alt="image" src="https://github.com/user-attachments/assets/cb2668b9-4e4d-40ff-a233-edeaa307d7b1" />
+
 
 ## API Endpoints
 
@@ -77,6 +78,7 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 | Method | Endpoint |
 |----------|----------|
 | GET | /api/journeys/{journeyId}/transactions |
+| GET | /api/journeys/{journeyId}/transactions/category-summary |
 | POST | /api/journeys/{journeyId}/transactions |
 | PUT | /api/journeys/{journeyId}/transactions/{transactionId} |
 | DELETE | /api/journeys/{journeyId}/transactions/{transactionId} |
