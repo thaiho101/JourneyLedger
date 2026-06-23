@@ -18,6 +18,9 @@ import {
     FaEllipsisH,
     FaCalendarAlt
 } from "react-icons/fa";
+import { MdArrowBackIosNew } from "react-icons/md";
+
+
 
 function TransactionPage() {
     const [transactions, setTransactions] = useState([]);
@@ -335,6 +338,7 @@ function TransactionPage() {
     return (
         <AppLayout title={
             <span className="journey-header-title">
+                <button className="back-to-journeys-btn" onClick={() => navigate(-1)}><MdArrowBackIosNew /></button>
                 <span className="journey-name">{journeyName}</span>
                 <span className="journey-duration">
                     <FaCalendarAlt className="journey-calendar-icon" />
