@@ -334,9 +334,6 @@ tbody tr:nth-child(even) {
 
 
 
-
-
-
 @media (max-width: 768px) {
     .page-container {
     max-width: 1200px;

@@ -15,13 +15,17 @@ import {
     FaGamepad,
     FaShoppingBag,
     FaShieldAlt,
-    FaEllipsisH
+    FaEllipsisH,
+    FaCalendarAlt
 } from "react-icons/fa";
 
 function TransactionPage() {
     const [transactions, setTransactions] = useState([]);
     const { journeyId } = useParams();
     const [journeyName, setJourneyName] = useState("");
+    const [fromDate, setFromDate] = useState("");
+    const [toDate, setToDate] = useState("");
+    
     const navigate = useNavigate();
 
     const [currency, setCurrency] = useState("");
@@ -59,6 +63,8 @@ function TransactionPage() {
 
                 const journey = await getJourneyById(journeyId);
                 setJourneyName(journey.journeyName);
+                setFromDate(journey.fromDate);
+                setToDate(journey.toDate);
                 setCurrency(journey.defaultCurrency);
 
                 const transactionData = await getTransactions(journeyId);
@@ -111,7 +117,10 @@ function TransactionPage() {
             return;
         }
 
-        setTransactions([newTransaction, ...transactions]);
+        // setTransactions([newTransaction, ...transactions]);
+
+        const updatedTransaction = [newTransaction, ...transactions].sort((a, b) => new Date(b.transactionDate) - new Date(a.transactionDate));
+        setTransactions(updatedTransaction);
 
         await refreshCategorySummary();
 
@@ -303,9 +312,36 @@ function TransactionPage() {
         };
     });
 
+    function DisplayDate(date) {
+        if (!date) return "";
+        const dateString = date;
+
+        // Split by parts so it parses exactly as written (Year-Month-Day)
+        const [year, month, day] = dateString.split("-");
+        const dateObj = new Date(year, month - 1, day);
+
+        // Format options: June 20, 2026
+        const options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC", // Prevents timezone shifts
+        };
+
+        return new Intl.DateTimeFormat("en-US", options).format(dateObj);
+    }
+
 
     return (
-        <AppLayout title={journeyName + " - Transaction Details"}>
+        <AppLayout title={
+            <span className="journey-header-title">
+                <span className="journey-name">{journeyName}</span>
+                <span className="journey-duration">
+                    <FaCalendarAlt className="journey-calendar-icon" />
+                    {DisplayDate(fromDate)} - {DisplayDate(toDate)}
+                </span>
+            </span>
+        }>
         <div className="page-container">
             <div className="form-card">
                 <h2 className="section-title">Add New Transaction</h2>
