@@ -381,6 +381,7 @@ function TransactionPage() {
             </div>
 
             <div className="category-summary-card">
+                <h4>Category Breakdown ({currency})</h4>
                 {completedCategorySummary.map((item) => (
                     <div key={item.category} className={`category-summary-row ${item.category.toLowerCase()}`}>
                         <div className={`category-info ${item.category.toLowerCase()}`}>
@@ -393,7 +394,7 @@ function TransactionPage() {
                         <div className="category-amount-percentage">
 
                             <span className="category-amount">
-                                ${Number(item.totalExpense).toLocaleString("en-US", {
+                                {Number(item.totalExpense).toLocaleString("en-US", {
                                     minimumFractionDigits: 2
                                 })}
                             </span>

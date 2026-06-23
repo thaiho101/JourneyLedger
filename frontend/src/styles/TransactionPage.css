@@ -157,11 +157,15 @@ tbody tr:nth-child(even) {
     margin-bottom: 10px;
 }
 
-.category-summary-card h3 {
-    margin-bottom: 18px;
-    font-size: 1.25rem;
+.category-summary-card h4 {
+    font-size: 17px;
     font-weight: 700;
-    color: #0f172a;
+    color: #000000c2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
 }
 
 .category-summary-row {
