@@ -1,6 +1,21 @@
+.back-to-journeys-btn {
+    position: relative;
+    top: 0;
+    left: -25px;
+    font-size: 18px;
+    background-color: transparent;
+}
+
 .section-title, .summary-title {
     color: #334155;
     font-weight: 600;
+    font-size: 23px;
+}
+
+.summary-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .summary-card {
@@ -334,16 +349,14 @@ tbody tr:nth-child(even) {
 
 
 
-
-
-
 @media (max-width: 768px) {
     .page-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px;
   }
-    .hide-on-mobile {
+
+    .hide-on-mobile, .back-to-journeys-btn {
         display: none;
     }
   .summary-content {
