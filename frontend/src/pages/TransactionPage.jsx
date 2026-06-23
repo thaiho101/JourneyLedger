@@ -390,15 +390,20 @@ function TransactionPage() {
                             <span className="category-name">{item.category.charAt(0).toUpperCase() + item.category.slice(1).toLowerCase()}</span>
                         </div>
 
-                        <span className="category-amount">
-                            ${Number(item.totalExpense).toLocaleString("en-US", {
-                                minimumFractionDigits: 2
-                            })}
-                        </span>
+                        <div className="category-amount-percentage">
 
-                        <span className="category-percentage">
-                            {item.percentage}%
-                        </span>
+                            <span className="category-amount">
+                                ${Number(item.totalExpense).toLocaleString("en-US", {
+                                    minimumFractionDigits: 2
+                                })}
+                            </span>
+
+                            <span className="category-percentage">
+                                {item.percentage}%
+                            </span>
+
+                        </div>
+
                     </div>
                 ))}
             </div>
