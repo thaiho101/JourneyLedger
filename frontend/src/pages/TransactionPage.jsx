@@ -347,61 +347,6 @@ function TransactionPage() {
             </span>
         }>
         <div className="page-container">
-            <div className="form-card">
-                <h2 className="section-title">Add New Transaction</h2>
-
-                <form onSubmit={handleCreateTransaction} className="transaction-form">
-                    <div className="form-row currency-select">
-                        <label >Currency</label>
-                        <select value={currency} disabled>
-                            {
-                                Object.entries(countryCurrencies).map(([country, code]) => (
-                                    <option key={code} value={code}>
-                                        {code}
-                                    </option>
-                                ))
-                            }
-                        </select>
-                    </div>
-
-                    <div className="form-row">
-                        <label >Date</label>
-                        <input value={transactionDate} onChange={(e) => setTransactionDate(e.target.value)} type="datetime-local" required/>
-                    </div>
-
-                    <div className="form-row">
-                        <label >Category</label>
-                        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-                            <option value="">Select category</option>
-                            <option value="TRANSPORTATION">Transportation</option>
-                            <option value="ACCOMMODATION">Accommodation</option>
-                            <option value="FOOD">Food</option>
-                            <option value="ENTERTAINMENT">Entertainment</option>
-                            <option value="SHOPPING">Shopping</option>
-                            <option value="INSURANCE">Insurance</option>
-                            <option value="OTHER">Other</option>
-                        </select>
-                    </div>
-
-                    <div className="form-row">
-                        <label >Description</label>
-                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text"/>
-                    </div>
-
-                    <div className="form-row">
-                        <label >Budget</label>
-                        <input value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} type="number" min="0"/>
-                    </div>
-
-                    <div className="form-row">
-                        <label >Expense</label>
-                        <input value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} type="number" min="0"/>
-                    </div>
-
-                    <button className="btn-primary" type='submit'>Add Transaction</button>
-                </form>
-            </div>
-        
 
             <div className="summary-card">
                 <h2 className="summary-title">Summary</h2>
@@ -461,6 +406,61 @@ function TransactionPage() {
 
                     </div>
                 ))}
+            </div>
+
+            <div className="form-card">
+                <h2 className="section-title">Add New Transaction</h2>
+
+                <form onSubmit={handleCreateTransaction} className="transaction-form">
+                    <div className="form-row currency-select">
+                        <label >Currency</label>
+                        <select value={currency} disabled>
+                            {
+                                Object.entries(countryCurrencies).map(([country, code]) => (
+                                    <option key={code} value={code}>
+                                        {code}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label >Date</label>
+                        <input value={transactionDate} onChange={(e) => setTransactionDate(e.target.value)} type="datetime-local" required/>
+                    </div>
+
+                    <div className="form-row">
+                        <label >Category</label>
+                        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <option value="">Select category</option>
+                            <option value="TRANSPORTATION">Transportation</option>
+                            <option value="ACCOMMODATION">Accommodation</option>
+                            <option value="FOOD">Food</option>
+                            <option value="ENTERTAINMENT">Entertainment</option>
+                            <option value="SHOPPING">Shopping</option>
+                            <option value="INSURANCE">Insurance</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label >Description</label>
+                        <input value={description} onChange={(e) => setDescription(e.target.value)} type="text"/>
+                    </div>
+
+                    <div className="form-row">
+                        <label >Budget</label>
+                        <input value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} type="number" min="0"/>
+                    </div>
+
+                    <div className="form-row">
+                        <label >Expense</label>
+                        <input value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} type="number" min="0"/>
+                    </div>
+
+                    <button className="btn-primary" type='submit'>Add Transaction</button>
+                </form>
             </div>
 
             <div className="table-card">
