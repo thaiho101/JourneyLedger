@@ -18,3 +18,17 @@ jobs:
           cd /home/pi/personalDev/JourneyLedger
           chmod +x deploy.sh
           ./deploy.sh
+
+      - name: Notify Telegram success
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="✅ JourneyLedger deployed successfully.%0A%0ABranch: main%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}"
+
+      - name: Notify Telegram failure
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="❌ JourneyLedger deployment failed.%0A%0ABranch: main%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}%0ACheck GitHub Actions log."
