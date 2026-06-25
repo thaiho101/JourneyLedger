@@ -38,6 +38,8 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 - Raspberry Pi 4
 - Apache Reverse Proxy
 - Cloudflare Tunnel
+- GitHub Actions (CI/CD)
+- Self-Hosted GitHub Actions Runner
 - Systemd Services
 
 ## Screenshots
