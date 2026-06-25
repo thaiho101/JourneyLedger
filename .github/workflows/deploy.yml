@@ -1,0 +1,16 @@
+name: Deploy JourneyLedger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: selft-hosted
+
+    steps:
+      - name: Deploy application
+        run: |
+          cd /home/pi/personalDev/JourneyLedger
+          ./deploy.sh
