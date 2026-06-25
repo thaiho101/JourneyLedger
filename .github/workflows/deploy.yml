@@ -24,11 +24,11 @@ jobs:
         run: |
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text="🚀 JourneyLedger deployed successfully. ✅%0A%0A🌿 Branch: main%0A📝 Title: ${{ github.event_commit.message }}%0A🔑 Commit: ${{ github.sha }}%0A👤 By: ${{ github.actor }%0A🔢 Run: ${{ github.run_number }}%0A🔗 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            -d text="🚀 JourneyLedger deployed successfully. ✅%0A%0A🌿 Branch: main%0A📝 Title: ${{ github.event.head_commit.message }}%0A🔑 Commit: ${{ github.sha }}%0A👤 By: ${{ github.actor }}%0A🔢 Run: ${{ github.run_number }}%0A🔗 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Notify Telegram failure
         if: failure()
         run: |
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text="❌ JourneyLedger deployment failed.%0A%0ABranch: main%0ACommit: ${{ github.sha }}%0ABy: ${{ github.actor }}%0ACheck GitHub Actions log."
+            -d text="❌ JourneyLedger deployment failed.%0A%0A🌿 Branch: main%0A🔑 Commit: ${{ github.sha }}%0A👤 By: ${{ github.actor }}%0A🔢 Run: ${{ github.run_number }}%0A🔗 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
