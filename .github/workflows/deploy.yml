@@ -6,14 +6,16 @@ on:
       - main
 
 jobs:
-  test:
+  deploy:
     runs-on:
       - self-hosted
       - Linux
       - ARM
 
     steps:
-      - name: Test deploy workflow pickup
+      - name: Deploy application
         run: |
           echo "Deploy workflow picked up"
-          hostname
+          cd /home/pi/personalDev/JourneyLedger
+          pwd
+          ls -la
