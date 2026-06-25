@@ -95,7 +95,6 @@
     flex-direction: column; 
     gap: 6px;
     flex: 1;
-    /* min-width: 140px; */
 }
 
 .form-row:nth-child(1) {
@@ -141,7 +140,6 @@
 }
 
 .form-row label {
-    /* width: 120px; */
     font-weight: 600;
 }
 
