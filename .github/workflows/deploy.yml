@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: Deploy application
         run: |
-          echo "Deploy workflow picked up"
           cd /home/pi/personalDev/JourneyLedger
-          pwd
-          ls -la
+          chmod +x deploy.sh
+          ./deploy.sh
