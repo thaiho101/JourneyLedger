@@ -17,3 +17,6 @@ jobs:
         run: |
           cd /home/pi/personalDev/JourneyLedger
           ./deploy.sh
+
+
+# Deploys JourneyLedger from main to Raspberry Pi
