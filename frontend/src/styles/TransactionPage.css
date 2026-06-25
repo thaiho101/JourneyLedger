@@ -360,7 +360,6 @@ tbody tr:nth-child(even) {
         display: none;
     }
   .summary-content {
-    /* flex-direction: column; */
     display: grid;
     grid-template-columns: repeat(auto-fill, 1fr 1fr);
     gap: 10px;
