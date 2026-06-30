@@ -1,6 +1,6 @@
 # JourneyLedger
 
-A full-stack travel expense tracking application built with Spring Boot, React, and MariaDB.
+A full-stack travel expense tracking application built with Spring Boot, React, and MariaDB, featuring JWT authentication, Docker containerization, and a self-hosted CI/CD deployment pipeline on Raspberry Pi.
 
 ## Features
 
@@ -35,6 +35,9 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 
 ### Deployment
 
+- Docker
+- Docker Compose
+- Nginx reverse proxy
 - Raspberry Pi 4
 - Apache Reverse Proxy
 - Cloudflare Tunnel
@@ -91,19 +94,47 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 
 ## Local Development
 
-### Backend
+### Option 1 - Docker (Recommended)
+
+```bash
+docker compose up --build
+```
+
+### Option 2 - Local Development with Host Database
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+### Option 3 - Traditional Development
+
+Backend
 
 ```bash
 cd backend
 ./mvnw spring-boot:run
 ```
 
-### Frontend
+Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
+```
+
+## Docker Architecture
+
+```text
+                 Docker Compose
+                        │
+        ┌───────────────┼───────────────┐
+        │               │               │
+        ▼               ▼               ▼
+   Nginx Container  Spring Boot     MariaDB
+    (Frontend)       Container      Container
+        │               │
+        └─────── REST API ───────────┘
 ```
 
 ## Production Deployment
