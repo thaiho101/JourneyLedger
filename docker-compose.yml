@@ -1,0 +1,44 @@
+services:
+  db:
+   image: mariadb:10.11
+   container_name: journeyledger-db
+   environment:
+     MARIADB_DATABASE: journeyledger
+     MARIADB_USER: journeyledger_user
+     MARIADB_PASSWORD: journeyledger_password
+     MARIADB_ROOT_PASSWORD: root_password
+   ports:
+     - "3307:3306"
+   volumes:
+     - journeyledger-db-data:/var/lib/mysql
+   healthcheck:
+     test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+     interval: 5s
+     timeout: 5s
+     retries: 10
+
+  backend:
+   build:
+     context: ./backend
+   container_name: journeyledger-backend
+   ports:
+     - "8080:8080"
+   environment:
+     DB_URL: jdbc:mariadb://db:3306/journeyledger
+     DB_USERNAME: journeyledger_user
+     DB_PASSWORD: journeyledger_password
+   depends_on:
+     db:
+       condition: service_healthy
+
+  frontend:
+   build:
+     context: ./frontend
+   container_name: journeyledger-frontend
+   ports:
+     - "5173:80"
+   depends_on:
+     - backend
+
+volumes:
+  journeyledger-db-data:
