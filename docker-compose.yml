@@ -25,6 +25,8 @@ services:
      - "8080:8080"
    env_file:
      - .env.production
+   environment:
+     DB_URL: jdbc:mariadb://db:3306/journeyledger
   #  environment:
   #    DB_URL: jdbc:mariadb://db:3306/journeyledger
   #    DB_USERNAME: journeyledger_user
