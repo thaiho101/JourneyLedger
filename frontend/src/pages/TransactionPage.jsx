@@ -451,12 +451,12 @@ function TransactionPage() {
 
                     <div className="form-row">
                         <label >Budget</label>
-                        <input value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} type="number" min="0"/>
+                        <input value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} type="number" min="0" step={0.01}/>
                     </div>
 
                     <div className="form-row">
                         <label >Expense</label>
-                        <input value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} type="number" min="0"/>
+                        <input value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} type="number" min="0" step={0.01}/>
                     </div>
 
                     <button className="btn-primary" type='submit'>Add Transaction</button>
@@ -503,11 +503,11 @@ function TransactionPage() {
                                     </td>
 
                                     <td>
-                                        <input type="number" value={editDepositAmount} onChange={(e) => setEditDepositAmount(e.target.value)} min="0"/>
+                                        <input type="number" value={editDepositAmount} onChange={(e) => setEditDepositAmount(e.target.value)} min="0" step={0.01} />
                                     </td>
 
                                     <td>
-                                        <input type="number" value={editExpenseAmount} onChange={(e) => setEditExpenseAmount(e.target.value)} min="0"/>
+                                        <input type="number" value={editExpenseAmount} onChange={(e) => setEditExpenseAmount(e.target.value)} min="0" step={0.01} />
                                     </td>
 
                                     <td className="hide-on-mobile">
