@@ -17,4 +17,6 @@ public class JourneyResponse {
     private LocalDate fromDate;
     private LocalDate toDate;
     private Currency defaultCurrency;
+    private boolean shared;
+    private int sharedUserCount;
 }

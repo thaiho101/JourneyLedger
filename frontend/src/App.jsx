@@ -7,6 +7,7 @@ import CreateJourneyPage from "./pages/CreateJourneyPage";
 import UpdateJourneyPage from "./pages/UpdateJourneyPage";
 import TransactionPage from "./pages/TransactionPage";
 import SettingsPage from "./pages/SettingsPage";
+import ShareJourneyPage from "./pages/ShareJourneyPage";
 
 import "./App.css";
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/journeys/createjourney" element={<CreateJourneyPage />}></Route>
         <Route path="/journeys/:journeyId/edit" element={<UpdateJourneyPage />}></Route>
         <Route path="/journeys/:journeyId/transactions" element={<TransactionPage />}></Route>
+
+        <Route path="/journeys/:journeyId/shares" element={<ShareJourneyPage />}></Route>
 
         <Route path="/settings" element={<SettingsPage />}></Route>
 

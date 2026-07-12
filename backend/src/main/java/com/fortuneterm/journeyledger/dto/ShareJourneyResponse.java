@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ShareJourneyResponse {
+    private Long userId;
     private String email;
     private JourneyPermission permission;
 }

@@ -1,0 +1,249 @@
+.share-page-container {
+    width: min(900px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 40px;
+}
+
+.share-back-button {
+    border: none;
+    background: transparent;
+    color: #1677d2;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    padding: 4px 0;
+}
+
+.share-form-card,
+.shared-users-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(0, 119, 255, 0.15);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(32, 94, 144, 0.12);
+    padding: 24px;
+}
+
+.shared-users-card {
+    margin-top: 22px;
+}
+
+.share-form-header h2,
+.shared-users-header h2 {
+    margin: 0;
+    color: #17324d;
+}
+
+.share-form-header p,
+.shared-users-header p {
+    margin: 7px 0 0;
+    color: #687786;
+    font-size: 14px;
+}
+
+.share-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px auto;
+    align-items: end;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.share-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.share-form-group label {
+    color: #34495e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.share-form-group input,
+.share-form-group select,
+.shared-permission-select {
+    min-height: 44px;
+    border: 1px solid #ccd7e1;
+    border-radius: 11px;
+    background: #ffffff;
+    padding: 0 13px;
+    font-size: 15px;
+    outline: none;
+}
+
+.share-form-group input:focus,
+.share-form-group select:focus,
+.shared-permission-select:focus {
+    border-color: #2587e8;
+    box-shadow: 0 0 0 3px rgba(37, 135, 232, 0.12);
+}
+
+.share-submit-button {
+    min-height: 44px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #1976ed, #20b7e6);
+    color: white;
+    font-weight: 700;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.share-submit-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.share-message {
+    margin-top: 16px;
+    padding: 11px 13px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.share-message.error {
+    background: #fff0f0;
+    color: #bd2525;
+    border: 1px solid #f0b9b9;
+}
+
+.share-message.success {
+    background: #edf9f1;
+    color: #1d7a43;
+    border: 1px solid #b9e4c9;
+}
+
+.shared-users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.shared-user-count {
+    min-width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e8f3ff;
+    color: #1976d2;
+    font-weight: 700;
+}
+
+.shared-users-list {
+    margin-top: 20px;
+}
+
+.shared-user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid #e7edf2;
+}
+
+.shared-user-row:last-child {
+    border-bottom: none;
+}
+
+.shared-user-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.shared-user-avatar {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e6f2ff;
+    color: #1476cf;
+    font-weight: 800;
+}
+
+.shared-user-email {
+    color: #23384c;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.shared-user-description {
+    color: #7a8794;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.shared-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shared-permission-select {
+    min-width: 135px;
+}
+
+.remove-share-button {
+    min-height: 42px;
+    border: 1px solid #efb3b3;
+    border-radius: 10px;
+    background: #fff7f7;
+    color: #c92e2e;
+    padding: 0 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.remove-share-button:hover {
+    background: #ffe9e9;
+}
+
+.shared-users-empty {
+    color: #7a8794;
+    text-align: center;
+    padding: 30px 10px 12px;
+}
+
+@media (max-width: 760px) {
+    .share-page-container {
+        width: min(100% - 20px, 900px);
+        padding-top: 14px;
+    }
+
+    .share-form-card,
+    .shared-users-card {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    .share-form {
+        grid-template-columns: 1fr;
+    }
+
+    .share-submit-button {
+        width: 100%;
+    }
+
+    .shared-user-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .shared-user-actions {
+        width: 100%;
+    }
+
+    .shared-permission-select {
+        flex: 1;
+        min-width: 0;
+    }
+}

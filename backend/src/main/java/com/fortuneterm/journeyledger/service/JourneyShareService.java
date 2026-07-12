@@ -66,7 +66,7 @@ public class JourneyShareService {
 
         journeyShareRepository.save(journeyShare);
 
-        return new ShareJourneyResponse(sharedUser.getEmail(), journeyShare.getPermission());
+        return new ShareJourneyResponse(sharedUser.getId(), sharedUser.getEmail(), journeyShare.getPermission());
     }
 
     public List<ShareJourneyResponse> getJourneyShares(Long journeyId, Authentication authentication) {
@@ -84,7 +84,7 @@ public class JourneyShareService {
 
         List<JourneyShare> shares = journeyShareRepository.findByJourney(journey);
 
-        return shares.stream().map(share -> new ShareJourneyResponse(share.getUser().getEmail(), share.getPermission())).toList();
+        return shares.stream().map(share -> new ShareJourneyResponse(share.getUser().getId(), share.getUser().getEmail(), share.getPermission())).toList();
     }
 
     public ShareJourneyResponse updatePermission(Long journeyId, Long userId, UpdateJourneyPermissionRequest req, Authentication authentication) {
@@ -113,7 +113,7 @@ public class JourneyShareService {
         journeyShare.setPermission(req.getPermission());
         JourneyShare updatedShare = journeyShareRepository.save(journeyShare);
 
-        return new ShareJourneyResponse(sharedUser.getEmail(), updatedShare.getPermission());
+        return new ShareJourneyResponse(sharedUser.getId(), sharedUser.getEmail(), updatedShare.getPermission());
     }
 
     public void removeShare(Long journeyId, Long userId, Authentication authentication) {
@@ -186,10 +186,10 @@ public class JourneyShareService {
         }
 
         JourneyShare journeyShare = journeyShareRepository.findByJourneyAndUser(journey, currentUser)
-                .orElseThrow(() -> new InvalidCredentialsException("You do not have access to this journey"));
+                .orElseThrow(() -> new InvalidCredentialsException("You do not have permission to edit this journey"));
 
         if (journeyShare.getPermission() != JourneyPermission.EDIT) {
-            throw new InvalidCredentialsException("You do not have access to this journey");
+            throw new InvalidCredentialsException("You do not have permission to edit this journey");
         }
     }
 }

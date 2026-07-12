@@ -16,6 +16,7 @@ import com.fortuneterm.journeyledger.enums.TransactionType;
 import com.fortuneterm.journeyledger.exception.JourneyIdNotFoundException;
 import com.fortuneterm.journeyledger.exception.UserNotFoundException;
 import com.fortuneterm.journeyledger.repository.JourneyRepository;
+import com.fortuneterm.journeyledger.repository.JourneyShareRepository;
 import com.fortuneterm.journeyledger.repository.TransactionRepository;
 import com.fortuneterm.journeyledger.repository.UserRepository;
 
@@ -31,6 +32,7 @@ public class JourneyService {
     private final UserRepository userRepository;
     private final TransactionRepository transactionRepository;
     private final JourneyShareService journeyShareService;
+    private final JourneyShareRepository journeyShareRepository;
 
     public Journey createJourney(CreateJourneyRequest req, Authentication authentication) {
         String email = authentication.getName();
@@ -69,6 +71,10 @@ public class JourneyService {
             res.setFromDate(journey.getFromDate());
             res.setToDate(journey.getToDate());
             res.setDefaultCurrency(journey.getDefaultCurrency());
+            res.setShared(journeyShareRepository.existsByJourney(journey));
+            res.setSharedUserCount(Math.toIntExact(
+                    journeyShareRepository.countByJourney(journey)   
+            ));
 
             responses.add(res);
         }

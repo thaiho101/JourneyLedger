@@ -22,4 +22,8 @@ public interface JourneyShareRepository extends JpaRepository<JourneyShare, Long
     boolean existsByJourneyAndUserAndPermission(Journey journey, User user, JourneyPermission permission);
 
     void deleteByJourneyAndUser(Journey journey, User user);
+
+    boolean existsByJourney(Journey journey);
+
+    long countByJourney(Journey journey);
 }
