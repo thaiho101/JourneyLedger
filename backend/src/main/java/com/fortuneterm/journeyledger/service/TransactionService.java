@@ -85,7 +85,7 @@ public class TransactionService {
             res.setCurrency(transaction.getCurrency());
             res.setType(transaction.getType());
             res.setTransactionDate(transaction.getTransactionDate());
-            res.setCategory((transaction.getCategory()));
+            res.setCategory(transaction.getCategory());
 
             responses.add(res);
         }
