@@ -13,10 +13,10 @@ import com.fortuneterm.journeyledger.entity.Journey;
 import com.fortuneterm.journeyledger.entity.Transaction;
 import com.fortuneterm.journeyledger.entity.User;
 import com.fortuneterm.journeyledger.enums.TransactionType;
-import com.fortuneterm.journeyledger.exception.InvalidCredentialsException;
 import com.fortuneterm.journeyledger.exception.JourneyIdNotFoundException;
 import com.fortuneterm.journeyledger.exception.UserNotFoundException;
 import com.fortuneterm.journeyledger.repository.JourneyRepository;
+import com.fortuneterm.journeyledger.repository.JourneyShareRepository;
 import com.fortuneterm.journeyledger.repository.TransactionRepository;
 import com.fortuneterm.journeyledger.repository.UserRepository;
 
@@ -31,6 +31,8 @@ public class JourneyService {
     private final JourneyRepository journeyRepository;
     private final UserRepository userRepository;
     private final TransactionRepository transactionRepository;
+    private final JourneyShareService journeyShareService;
+    private final JourneyShareRepository journeyShareRepository;
 
     public Journey createJourney(CreateJourneyRequest req, Authentication authentication) {
         String email = authentication.getName();
@@ -69,6 +71,10 @@ public class JourneyService {
             res.setFromDate(journey.getFromDate());
             res.setToDate(journey.getToDate());
             res.setDefaultCurrency(journey.getDefaultCurrency());
+            res.setShared(journeyShareRepository.existsByJourney(journey));
+            res.setSharedUserCount(Math.toIntExact(
+                    journeyShareRepository.countByJourney(journey)   
+            ));
 
             responses.add(res);
         }
@@ -79,13 +85,10 @@ public class JourneyService {
 
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
 
         Journey journey = journeyRepository.findById(id).orElseThrow(() -> new JourneyIdNotFoundException("Journey by id not found"));
-        
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have access to this journey");
-        }
+
+        journeyShareService.validateReadAccess(journey, user);
 
         JourneyResponse journeyresponse = new JourneyResponse();
 
@@ -103,13 +106,10 @@ public class JourneyService {
     public JourneyResponse updateJourney(Long journeyId, Authentication authentication, UpdateJourneyRequest req) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do have not access to update this journey");
-        }
+        journeyShareService.validateOwnerAccess(journey, user);
 
         journey.setJourneyName(req.getJourneyName());
         journey.setOriginCountry(req.getOriginCountry());
@@ -136,13 +136,10 @@ public class JourneyService {
     public void deleteJourney(Long journeyId, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have to delete this journey");
-        }
+        journeyShareService.validateOwnerAccess(journey, user);
 
         journeyRepository.delete(journey);
     }
@@ -150,13 +147,10 @@ public class JourneyService {
     public JourneySummaryResponse getJourneySummary(Long journeyId, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new UserNotFoundException("User not found");
-        }
+        journeyShareService.validateReadAccess(journey, user);
 
         List<Transaction> transactions = transactionRepository.findByJourney(journey);
 

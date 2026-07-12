@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fortuneterm.journeyledger.dto.CreateJourneyRequest;
 import com.fortuneterm.journeyledger.dto.JourneyResponse;
 import com.fortuneterm.journeyledger.dto.JourneySummaryResponse;
+import com.fortuneterm.journeyledger.dto.SharedJourneyResponse;
 import com.fortuneterm.journeyledger.dto.UpdateJourneyRequest;
 import com.fortuneterm.journeyledger.service.JourneyService;
+import com.fortuneterm.journeyledger.service.JourneyShareService;
 
 import jakarta.validation.Valid;
 
@@ -31,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JourneyController {
     private final JourneyService journeyService;
+    private final JourneyShareService journeyShareService;
 
     @PostMapping
     public Journey createJourney(@Valid @RequestBody CreateJourneyRequest req, Authentication authentication) {
@@ -61,5 +64,10 @@ public class JourneyController {
     @GetMapping("/{journeyId}/summary")
     public JourneySummaryResponse getJourneySummary(@PathVariable Long journeyId, Authentication authentication) {
         return journeyService.getJourneySummary(journeyId, authentication);
+    }
+
+    @GetMapping("/shared")
+    public List<SharedJourneyResponse> getSharedJourneys(Authentication authentication) {
+        return journeyShareService.getSharedJourneys(authentication);
     }
 }
