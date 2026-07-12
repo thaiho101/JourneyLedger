@@ -13,7 +13,6 @@ import com.fortuneterm.journeyledger.entity.Journey;
 import com.fortuneterm.journeyledger.entity.Transaction;
 import com.fortuneterm.journeyledger.entity.User;
 import com.fortuneterm.journeyledger.enums.TransactionCategory;
-import com.fortuneterm.journeyledger.exception.InvalidCredentialsException;
 import com.fortuneterm.journeyledger.exception.JourneyIdNotFoundException;
 import com.fortuneterm.journeyledger.exception.TransactionNotFoundException;
 import com.fortuneterm.journeyledger.exception.UserNotFoundException;
@@ -33,18 +32,15 @@ public class TransactionService {
     private final UserRepository userRepository;
     private final JourneyRepository journeyRepository;
     private final TransactionRepository transactionRepository;
+    private final JourneyShareService journeyShareService;
 
     public TransactionResponse createTransaction(Long id, CreateTransactionRequest req, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        Long userId = user.getId();
-
         Journey journey = journeyRepository.findById(id).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have access to create this transaction");
-        }
+        journeyShareService.validateEditAccess(journey, user);
 
         Transaction transaction = new Transaction();
         transaction.setJourney(journey);
@@ -72,13 +68,10 @@ public class TransactionService {
     public List<TransactionResponse> getTransactionByJourney(Long id, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
-
+        
         Journey journey = journeyRepository.findById(id).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have access to this transaction");
-        }
+        journeyShareService.validateReadAccess(journey, user);
 
         List<Transaction> transactions = transactionRepository.findByJourney(journey);
         
@@ -102,13 +95,10 @@ public class TransactionService {
     public TransactionResponse getTransactionById(Long journeyId, Long transactionId, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have to access this transaction");
-        }
+        journeyShareService.validateReadAccess(journey, user);
 
         Transaction transaction = transactionRepository.findByIdAndJourney(transactionId, journey).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
 
@@ -127,13 +117,10 @@ public class TransactionService {
     public TransactionResponse updateTransaction(Long journeyId, Long transactionId, Authentication authentication, UpdateTransactionRequest req) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
-
+        
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have to modify this transaction");
-        }
+        journeyShareService.validateEditAccess(journey, user);
 
         Transaction transaction = transactionRepository.findByIdAndJourney(transactionId, journey).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
 
@@ -161,13 +148,11 @@ public class TransactionService {
     public void deleteTransaction(Long journeyId, Long transactionId, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-        Long userId = user.getId();
+        
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have to modify this transaction");
-        }
+        journeyShareService.validateEditAccess(journey, user);
 
         Transaction transaction = transactionRepository.findByIdAndJourney(transactionId, journey).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
 
@@ -176,15 +161,11 @@ public class TransactionService {
 
     public List<CategorySummaryResponse> getCategorySummary(Long journeyId, Authentication authentication) {
         String email = authentication.getName();
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
-
-        Long userId = user.getId();
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));     
 
         Journey journey = journeyRepository.findById(journeyId).orElseThrow(() -> new JourneyIdNotFoundException("Journey not found"));
 
-        if (!userId.equals(journey.getUser().getId())) {
-            throw new InvalidCredentialsException("You do not have access to this journey");
-        }
+        journeyShareService.validateReadAccess(journey, user);
 
         List<Object[]> results = transactionRepository.findExpenseSummaryByCategory(journeyId);
 

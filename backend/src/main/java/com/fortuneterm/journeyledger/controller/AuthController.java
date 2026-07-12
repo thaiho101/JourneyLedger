@@ -19,7 +19,6 @@ import com.fortuneterm.journeyledger.dto.LoginResponse;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-import com.fortuneterm.journeyledger.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
