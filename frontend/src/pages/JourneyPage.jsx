@@ -222,8 +222,6 @@ function JourneyPage() {
                         </div>);
                     })}
                 </div>
-            </div>
-
 
             {sharedJourneys.length > 0 && (
     <>
@@ -303,9 +301,14 @@ function JourneyPage() {
                                 {journey.fromDate} - {journey.toDate}
                             </div>
 
+                            <div className="journey-total-days">
+                                <FaCartFlatbedSuitcase style={{ color: "#a9a9a9", marginRight: "6px", fontSize: "18px" }} /> 
+                                    {totalDays} {totalDays > 1 ? "days" : "day"}
+                            </div>
+
                             <div className="shared-journey-info">
-                                <span>
-                                    <FaUserGroup /> Shared by: {journey.ownerEmail}
+                                <span className="shared-by">
+                                    <FaUserGroup style={{color: "#a3a2a2"}}/> Shared by: {journey.ownerEmail}
                                 </span>
 
                                 <span
@@ -319,26 +322,10 @@ function JourneyPage() {
 
                             <div className="journey-card-footer">
                                 <div className="journey-duration">
-                                    <FaCartFlatbedSuitcase
-                                        style={{
-                                            color: "#a0530f",
-                                            marginRight: "6px",
-                                            fontSize: "25px"
-                                        }}
-                                    />
-
-                                    <GiPalmTree
-                                        style={{
-                                            color: "#27ae60",
-                                            marginRight: "6px",
-                                            fontSize: "25px"
-                                        }}
-                                    />
-
-                                    <div>
-                                        {totalDays}{" "}
-                                        {totalDays > 1 ? "days" : "day"}
-                                    </div>
+                                    <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "25px" }} /> 
+                                    <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "25px" }} />
+                                    <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "25px" }} />
+                                    <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "25px" }} />
                                 </div>
                             </div>
 
@@ -349,6 +336,11 @@ function JourneyPage() {
         </div>
     </>
 )}
+
+            </div>
+
+
+
             
         </AppLayout>
 
