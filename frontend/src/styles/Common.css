@@ -124,3 +124,33 @@ button:hover {
   background-color: rgba(26, 115, 232, 0.05);
 }
 
+.share-button {
+  background: linear-gradient(to right, #1a73e8, #1fb7eb);
+  color: white;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+}
+
+.share-button:hover {
+    background: linear-gradient(to right, #155cb8, #19a3d1);
+}
+
+.edit-button {
+  background: linear-gradient(to right, #b9b9b9, #1fb7eb);
+  color: white;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+}
+
+.edit-button:hover {
+    background: linear-gradient(to right, #a5a5a5, #19a3d1);
+}
+
+.share-button, .edit-button {
+  display: flex;
+  align-items: center;
+  top: 0;
+  gap: 5px;
+}
