@@ -189,10 +189,10 @@ function JourneyPage() {
 
                                 <div className="journey-card-footer">
                                     <div className="journey-duration">
-                                        <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "25px" }} /> 
-                                        <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "25px" }} />
-                                        <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "25px" }} />
-                                        <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "25px" }} />
+                                        <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "20px" }} /> 
+                                        <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "20px" }} />
+                                        <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "20px" }} />
+                                        <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "20px" }} />
 
                                     </div>
 
@@ -323,10 +323,10 @@ function JourneyPage() {
 
                             <div className="journey-card-footer">
                                 <div className="journey-duration">
-                                    <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "25px" }} /> 
-                                    <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "25px" }} />
-                                    <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "25px" }} />
-                                    <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "25px" }} />
+                                    <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "20px" }} /> 
+                                    <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "20px" }} />
+                                    <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "20px" }} />
+                                    <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "20px" }} />
                                 </div>
                             </div>
 
