@@ -147,3 +147,10 @@ button:hover {
 .edit-button:hover {
     background: linear-gradient(to right, #a5a5a5, #19a3d1);
 }
+
+.share-button, .edit-button {
+  display: flex;
+  align-items: center;
+  top: 0;
+  gap: 5px;
+}

@@ -107,7 +107,15 @@
     margin-bottom: 5px;
 }
 
-.journey-total-days {
+.journey-date-and-share {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.journey-total-days, .journey-share {
     margin-top: 6px;
     color: #777;
     font-size: 14px;
@@ -206,7 +214,6 @@
         transform: translateX(0);
     }
 }
-
 
 
 
