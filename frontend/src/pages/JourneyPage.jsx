@@ -9,7 +9,8 @@ import "../styles/Common.css";
 import "../styles/MobileDevice.css";
 
 import { FaTrash, FaCarSide, FaUmbrellaBeach } from "react-icons/fa";
-import { CgAdd } from "react-icons/cg";
+import { FaPlus } from "react-icons/fa";
+
 import { GiAirplaneDeparture, GiPalmTree } from "react-icons/gi";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaCartFlatbedSuitcase, FaHotel, FaEllipsisVertical } from "react-icons/fa6";
@@ -131,7 +132,7 @@ function JourneyPage() {
         <AppLayout title="My Journeys">
             <div className="page-container">
                 <div>
-                    <button className="create-journey-bttn" onClick={() => navigate("/journeys/createjourney")}><CgAdd style={{ fontSize: '15px' }}/> New Journey</button>  
+                    <button className="create-journey-bttn" onClick={() => navigate("/journeys/createjourney")}><FaPlus style={{ fontSize: '15px' }}/> New Journey</button>  
                 </div>
                 <div className="journey-list">
                     
@@ -180,8 +181,8 @@ function JourneyPage() {
                                     </div>
                                     
                                     {journey.shared && (
-                                        <div className="journey-share">
-                                            <FaShareNodes /> Shared with {journey.sharedUserCount} {journey.sharedUserCount < 2 ? ("people") : ("peoples")}
+                                        <div className="journey-share" onClick={(e) => {e.stopPropagation(); navigate(`/journeys/${journey.id}/shares`);}}>
+                                            <FaShareNodes /> Shared with {journey.sharedUserCount} {journey.sharedUserCount === 1 ? ("person") : ("people")}
                                         </div>
                                     )}
                                 </div>

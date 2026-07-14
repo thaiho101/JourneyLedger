@@ -239,6 +239,15 @@
     color: rgba(0, 0, 0, 0.668);
 }
 
+.journey-share {
+    color: rgb(0, 106, 255);
+}
+
+.journey-share:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 
 
