@@ -12,10 +12,13 @@ import { FaTrash, FaCarSide, FaUmbrellaBeach } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
 import { GiAirplaneDeparture, GiPalmTree } from "react-icons/gi";
 import { CiCalendarDate } from "react-icons/ci";
-import { FaCartFlatbedSuitcase, FaHotel } from "react-icons/fa6";
+import { FaCartFlatbedSuitcase, FaHotel, FaEllipsisVertical } from "react-icons/fa6";
 import { PiBeachBallDuotone } from "react-icons/pi";
 import { GoSun } from "react-icons/go";
 import { FaUserGroup } from "react-icons/fa6";
+import { FaEarthAmericas } from "react-icons/fa6";
+
+
 
 
 
@@ -61,6 +64,7 @@ function sortJourneys(journeyData) {
 function JourneyPage() {
     const [journeys, setJourneys] = useState([]);
     const [sharedJourneys, setSharedJourneys] = useState([]);
+    const [openMenuId, setOpenMenuId] = useState(null);
     const navigate = useNavigate();
 
 
@@ -133,6 +137,14 @@ function JourneyPage() {
         
     }
 
+    function handleMenuClick(journeyId) {
+        if (openMenuId === journeyId) {
+            setOpenMenuId(null);
+        } else {
+            setOpenMenuId(journeyId);
+        }
+    }
+
     return (
         <AppLayout title="My Journeys">
             <div className="page-container">
@@ -178,33 +190,45 @@ function JourneyPage() {
 
 
                                 <div className="journey-route">
-                                    {journey.originCountry} <GiAirplaneDeparture /> {journey.destinationCountry}
+                                    <FaEarthAmericas /> {journey.originCountry} <GiAirplaneDeparture /> {journey.destinationCountry}
                                 </div>
 
                                 <div className="journey-dates">
                                     <CiCalendarDate style={{ fontSize: '20px'}}/> {journey.fromDate} - {journey.toDate}
                                 </div>
 
+                                <div className="journey-total-days">
+                                    <FaCartFlatbedSuitcase style={{ color: "#a9a9a9", marginRight: "6px", fontSize: "18px" }} /> 
+                                    {totalDays} {totalDays > 1 ? "days" : "day"}
+                                </div>
+
                                 <div className="journey-card-footer">
                                     <div className="journey-duration">
-                                        <FaCartFlatbedSuitcase style={{ color: "#a0530f", marginRight: "6px", fontSize: "25px" }} /> 
-                                        <GiPalmTree style={{ color: "#27ae60", marginRight: "6px", fontSize: "25px" }} /> 
-                                        <FaHotel  className="hide-on-mobile" style={{ color: "#2980b9", marginRight: "6px", fontSize: "25px" }} /> 
+                                        {/* <FaCartFlatbedSuitcase style={{ color: "#a0530f", marginRight: "6px", fontSize: "25px" }} />  */}
+                                        <GiPalmTree style={{ color: "#00a141", marginRight: "6px", fontSize: "25px" }} /> 
+                                        {/* <FaHotel  className="hide-on-mobile" style={{ color: "#2980b9", marginRight: "6px", fontSize: "25px" }} />  */}
                                         <FaCarSide  className="hide-on-mobile" style={{ color: "crimson", marginRight: "8px", fontSize: "25px" }} />
-                                        <FaUmbrellaBeach  className="hide-on-mobile" style={{ color: "purple", marginRight: "6px", fontSize: "25px" }} />
+                                        {/* <FaUmbrellaBeach  className="hide-on-mobile" style={{ color: "purple", marginRight: "6px", fontSize: "25px" }} /> */}
                                         <PiBeachBallDuotone style={{ color: "#e74c3c", marginRight: "6px", fontSize: "25px" }} />
                                         <GoSun style={{ color: "#f39c12", marginRight: "8px", fontSize: "25px" }} />
-                                    
-                                    <div>
-                                        {totalDays} {totalDays > 1 ? "days" : "day"}
-                                    </div>
 
                                     </div>
 
                                     <div className="journey-actions">
-                                        <button className="share-button" onClick={(e) => {e.stopPropagation(); navigate(`/journeys/${journey.id}/shares`)}}>Share</button>
-                                        <button className="btn-primary edit-button" onClick={(e) => {e.stopPropagation(); navigate(`/journeys/${journey.id}/edit`);}}>Edit</button>
-                                        <button className="btn-danger" onClick={(e) => {e.stopPropagation(); handleDeleteJourney(journey.id);}}><FaTrash /></button>
+
+                                        
+                                        {openMenuId === journey.id && (
+                                            <div className="inline-actions">
+                                                <button className="share-button" onClick={(e) => {e.stopPropagation(); navigate(`/journeys/${journey.id}/shares`)}}>Share</button>
+                                                <button className="btn-primary edit-button" onClick={(e) => {e.stopPropagation(); navigate(`/journeys/${journey.id}/edit`);}}>Edit</button>
+                                                <button className="btn-danger" onClick={(e) => {e.stopPropagation(); handleDeleteJourney(journey.id);}}><FaTrash /></button>
+                                            </div>
+                                        )}
+                                            <button className="menu-button" onClick={(e) => { e.stopPropagation();
+                                                        handleMenuClick(openMenuId === journey.id ? null : journey.id);
+                                                }}>
+                                            <FaEllipsisVertical />
+                                        </button>
                                     </div>
                                 </div>
 
