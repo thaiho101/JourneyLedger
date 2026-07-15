@@ -77,20 +77,30 @@ A full-stack travel expense tracking application built with Spring Boot, React, 
 
 | Method | Endpoint |
 |----------|----------|
-| GET | /api/journeys |
-| POST | /api/journeys |
-| PUT | /api/journeys/{id} |
-| DELETE | /api/journeys/{id} |
+| GET       | /api/journeys |
+| POST      | /api/journeys |
+| PUT       | /api/journeys/{id} |
+| DELETE    | /api/journeys/{id} |
 
 ### Transactions
 
 | Method | Endpoint |
 |----------|----------|
-| GET | /api/journeys/{journeyId}/transactions |
-| GET | /api/journeys/{journeyId}/transactions/category-summary |
-| POST | /api/journeys/{journeyId}/transactions |
-| PUT | /api/journeys/{journeyId}/transactions/{transactionId} |
-| DELETE | /api/journeys/{journeyId}/transactions/{transactionId} |
+| GET       | /api/journeys/{journeyId}/transactions |
+| GET       | /api/journeys/{journeyId}/transactions/category-summary |
+| POST      | /api/journeys/{journeyId}/transactions |
+| PUT       | /api/journeys/{journeyId}/transactions/{transactionId} |
+| DELETE    | /api/journeys/{journeyId}/transactions/{transactionId} |
+
+### Sharing
+
+| Method | Endpoint |
+|----------|----------|
+| GET       | /api/journeys/shared |
+| POST      | /api/journeys/{journeyId}/shares |
+| GET       | /api/journeys/{journeyId}/shares |
+| PUT       | /api/journeys/{journeyId}/shares/{userId} |
+| DELETE    | /api/journeys/{journeyId}/shares/{userId} |
 
 ## Local Development
 
