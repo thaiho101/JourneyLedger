@@ -165,8 +165,8 @@ function TransactionPage() {
     }
 
     function handleEditTransaction(transaction) {
-        let deposit;
-        let expense;
+        let deposit = "";
+        let expense = "";
         if (transaction.type === "DEPOSIT") {
             deposit = transaction.amount;
         } else if (transaction.type === "EXPENSE") {
@@ -188,8 +188,8 @@ function TransactionPage() {
             return;
         }
 
-        const hasBudget = depositAmount !== "";
-        const hasExpense = expenseAmount !== "";
+        const hasBudget = editDepositAmount !== "";
+        const hasExpense = editExpenseAmount !== "";
 
         if (hasBudget && hasExpense) {
             alert("❗ Please enter either Budget or Expense, not both.");
