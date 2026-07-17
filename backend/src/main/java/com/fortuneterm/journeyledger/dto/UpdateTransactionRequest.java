@@ -8,7 +8,7 @@ import com.fortuneterm.journeyledger.enums.TransactionCategory;
 import com.fortuneterm.journeyledger.enums.TransactionType;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 public class UpdateTransactionRequest {
     @NotNull
-    @Positive
+    @PositiveOrZero
     private BigDecimal amount;
     
     private String description;
