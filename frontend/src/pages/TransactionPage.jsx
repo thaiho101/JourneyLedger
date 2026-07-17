@@ -374,14 +374,14 @@ function TransactionPage() {
                 <h2 className="summary-title">Summary</h2>
                 <div className="summary-content">
                     <div className="summary-item">
-                        <div className="summary-label">Travel Budget</div>
+                        <div className="summary-label">Journey Budget</div>
                         <div className="summary-value totalDeposit">
                             {totalDeposit.toLocaleString("en-US", { minimumFractionDigits: 2})} {currency}
                         </div>
                     </div>
 
                     <div className="summary-item">
-                        <div className="summary-label">Total Expense</div>
+                        <div className="summary-label">Total Expenses</div>
                         <div className="summary-value totalExpense">
                             {totalExpense.toLocaleString("en-US", {
                                 minimumFractionDigits: 2
