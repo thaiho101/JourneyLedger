@@ -100,18 +100,29 @@ function TransactionPage() {
 
     async function handleCreateTransaction(event) {
         event.preventDefault();
+
+        const hasBudget = depositAmount !== "";
+        const hasExpense = expenseAmount !== "";
+
+        if (hasBudget && hasExpense) {
+            alert("❗ Please enter either Budget or Expense, not both.");
+            return;
+        }
+
+        if (!hasBudget && !hasExpense) {
+            alert("❗ Please enter a Budget or Expense amount.");
+            return;
+        }
+
         let amount;
         let type;
 
-        if (depositAmount) {
+        if (depositAmount !== "") {
             amount = depositAmount;
             type = 'DEPOSIT';
-        } else if (expenseAmount) {
+        } else if (expenseAmount !== "") {
             amount = expenseAmount;
             type = 'EXPENSE';
-        } else {
-            alert("Please enter either expense amount or deposit amount.");
-            return;
         }
 
         const newTransaction = await createTransaction(journeyId, amount, description, currency, type, transactionDate, category);
@@ -177,17 +188,28 @@ function TransactionPage() {
             return;
         }
 
+        const hasBudget = depositAmount !== "";
+        const hasExpense = expenseAmount !== "";
+
+        if (hasBudget && hasExpense) {
+            alert("❗ Please enter either Budget or Expense, not both.");
+            return;
+        }
+
+        if (!hasBudget && !hasExpense) {
+            alert("❗ Please enter a Budget or Expense amount.");
+            return;
+        }
+
         let amount;
         let type;
 
-        if (editDepositAmount) {
+        if (editDepositAmount !== "") {
             amount = Number(editDepositAmount);
             type = "DEPOSIT";
-        } else if (editExpenseAmount) {
+        } else if (editExpenseAmount !== "") {
             amount = Number(editExpenseAmount);
             type = "EXPENSE";
-        } else {
-            alert("Please enter either expense amount or deposit amount.");
         }
 
         if (amount < 0) {
