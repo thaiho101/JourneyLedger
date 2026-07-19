@@ -60,9 +60,6 @@ class JourneyShareServiceTest {
         );
 
         verifyNoInteractions(journeyShareRepository);
-        //Testing 
-        // cmd: ./mvnw -Dtest=JourneyShareServiceTest#validateReadAccess_shouldAllowOwner test
-
     }
 
     @Test
@@ -88,9 +85,6 @@ class JourneyShareServiceTest {
         assertDoesNotThrow(() ->
             journeyShareService.validateReadAccess(journey, sharedUser)
         );
-
-        //Testing
-        //cmd: ./mvnw -Dtest=JourneyShareServiceTest#validateReadAccess_shouldAllowSharedUserWithReadPermission test
     }
 
     @Test
@@ -136,9 +130,6 @@ class JourneyShareServiceTest {
         assertThrows(InvalidCredentialsException.class, 
             () -> journeyShareService.validateReadAccess(journey, otherUser)
         );
-
-        //Testing
-        //cmd: ./mvnw -Dtest=JourneyShareServiceTest#validateReadAccess_shouldRejectUserWithoutShare test 
     }
 
     @Test
