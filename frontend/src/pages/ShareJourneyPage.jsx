@@ -77,7 +77,7 @@ function ShareJourneyPage() {
             setSuccessMessage("Journey shared successfully.");
         } catch (error) {
             console.error(error);
-            setErrorMessage(error.message || "Unable to share journey.");
+            setErrorMessage("Unable to share this journey. Please check the email address and try again.");
         } finally {
             setSubmitting(false);
         }
@@ -105,9 +105,7 @@ function ShareJourneyPage() {
             setSuccessMessage("Permission updated successfully.");
         } catch (error) {
             console.error(error);
-            setErrorMessage(
-                error.message || "Unable to update permission."
-            );
+            setErrorMessage("Unable to update permission.");
         }
     }
 
@@ -135,9 +133,7 @@ function ShareJourneyPage() {
             setSuccessMessage("Shared access removed.");
         } catch (error) {
             console.error(error);
-            setErrorMessage(
-                error.message || "Unable to remove shared access."
-            );
+            setErrorMessage("Unable to remove shared access.");
         }
     }
 
