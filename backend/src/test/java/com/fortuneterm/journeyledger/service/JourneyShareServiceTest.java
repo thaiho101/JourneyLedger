@@ -1,7 +1,10 @@
 package com.fortuneterm.journeyledger.service;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
@@ -13,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.fortuneterm.journeyledger.dto.ShareJourneyRequest;
+import com.fortuneterm.journeyledger.dto.ShareJourneyResponse;
 import com.fortuneterm.journeyledger.entity.Journey;
 import com.fortuneterm.journeyledger.entity.JourneyShare;
 import com.fortuneterm.journeyledger.entity.User;
@@ -21,6 +26,9 @@ import com.fortuneterm.journeyledger.exception.InvalidCredentialsException;
 import com.fortuneterm.journeyledger.repository.JourneyRepository;
 import com.fortuneterm.journeyledger.repository.JourneyShareRepository;
 import com.fortuneterm.journeyledger.repository.UserRepository;
+
+import org.springframework.security.core.Authentication;
+
 
 @ExtendWith(MockitoExtension.class)
 class JourneyShareServiceTest {
@@ -41,6 +49,9 @@ class JourneyShareServiceTest {
 
     @Mock
     private JourneyShareRepository journeyShareRepository;
+
+    @Mock
+    private Authentication authentication;
 
     @InjectMocks
     private JourneyShareService journeyShareService;
@@ -248,5 +259,57 @@ class JourneyShareServiceTest {
         );
 
         verifyNoInteractions(journeyShareRepository);
+    }
+
+    @Test
+    void shareJourney_shouldShareSuccessfullyWhenCurrentUserIsOwner() {
+        User owner = new User();
+        owner.setId(1L);
+        owner.setEmail("owner@example.com");
+
+        User sharedUser = new User();
+        sharedUser.setId(2L);
+        sharedUser.setEmail("friend@example.com");
+
+        Journey journey = new Journey();
+        journey.setUser(owner);
+        journey.setId(10L);
+
+        ShareJourneyRequest req = new ShareJourneyRequest();
+        req.setEmail("friend@example.com");
+        req.setPermission(JourneyPermission.READ);
+
+        when(
+            authentication.getName()
+        ).thenReturn("owner@example.com");
+
+        when(
+            userRepository.findByEmail("owner@example.com")
+        ).thenReturn(Optional.of(owner));
+
+        when(
+            journeyRepository.findById(10L)
+        ).thenReturn(Optional.of(journey));
+
+        when(
+            userRepository.findByEmail("friend@example.com")
+        ).thenReturn(Optional.of(sharedUser));
+
+        when(
+            journeyShareRepository.existsByJourneyAndUser(journey, sharedUser)
+        ).thenReturn(false);
+
+        when(
+            journeyShareRepository.save(any(JourneyShare.class))
+        ).thenAnswer(invocation -> invocation.getArgument(0));
+
+
+        ShareJourneyResponse res = journeyShareService.shareJourney(10L, req, authentication);
+
+        assertEquals(2L, res.getUserId());
+        assertEquals("friend@example.com", res.getEmail());
+        assertEquals(JourneyPermission.READ, res.getPermission());
+
+        verify(journeyShareRepository).save(any(JourneyShare.class));
     }
 }
